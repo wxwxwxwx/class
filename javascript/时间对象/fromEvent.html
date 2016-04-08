@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	ul,li{
+		margin:0;
+		padding: 0;
+		list-style: none;
+	}
+	ul{
+		width: 300px;
+		height: 400px;
+		position: absolute;
+margin:auto;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+padding: 30px;
+border: 1px solid #00aaaa;
+	}
+	ul li{
+
+	}
+	ul li input{
+		width: 300px;
+border: none;
+outline: none;
+border-bottom: 1px solid #665599;
+display: block;
+	}
+	.input{
+border: none;
+outline: none;
+border-bottom: 1px solid #1212ff;
+	}
+	span{
+	display: inline-block;
+	}
+	.span{
+		display: inline-block;
+		color:white ;
+		background: #858512;
+		margin-top: 5px;
+		padding: 0 7px;
+		border-radius: 5px;
+	}
+.btn{
+	display: inline-block;
+	color: #999999;
+	background: #ccc;
+	padding: 10px 20px;
+}
+.active{
+	color: white;
+	background: #aaff12;
+	font-size: 16px;
+	cursor: pointer;
+}
+</style>
+<body>
+<!-- <input type="text" value="aa" name="text">
+<br/>
+<br/>
+boy<input type="radio" name="radio">
+girl<input type="radio" name="radio">
+<br/>
+<br/>
+like:
+<input type="checkbox" name="checkbox" value="backetball">basketball
+<input type="checkbox" name="checkbox">swimming
+<input type="checkbox" name="checkbox">tennis
+<input type="checkbox" name="checkbox">play
+<input type="checkbox" name="checkbox">shopping
+<br/>
+<br/>
+you like number<select name="select" id="">
+	<option value="">1</option>
+	<option value="">2</option>
+	<option value="">3</option>
+</select>
+<br/>
+<br/>
+you what speak:
+<textarea name="textarea" id="" cols="30" rows="10" ></textarea>
+ -->
+<ul>
+
+<li>  <input type="text" name="username"><span class="tip"></span></li>
+<br/>
+<br/>
+
+<li>  <input type="password" name="pass" value=""><span class='tip'></span></li>
+<br/>
+<br/>
+<li>  <input type="password" name="passagain" ><span class='tip'></span></li>
+<br/>
+<br/>
+<li><div id="zhuce" class="btn">make sure</div></li>
+</ul>
+</body>
+<script type="text/javascript">
+// var users=['zhangsan','lisi','wangwu','zhaoliu']
+// var users={}
+// for(var i=0;i<8000000;i++){
+// 	users['item'+i]=true
+// }
+var users = {
+	'zhangsan':true,
+	'lisi':true,
+	'wangwu':true
+
+}
+var state={
+	'yi':false,
+	'er':false,
+	'san':false
+}
+var pass = document.getElementsByName('pass')[0]
+var passagain = document.getElementsByName('passagain')[0]
+var user = document.getElementsByName('username')[0]
+var btn = document.getElementById('zhuce')
+var addwarning=function(el,info){
+var span=el.parentElement.querySelector('.tip')	
+span.innerHTML=info
+	span.classList.add('span')
+}
+var deletewarning=function(el){
+var span=el.parentElement.querySelector('.tip')	
+span.innerHTML=''
+	span.classList.remove('span')
+}
+var zhuce = function(){
+	if(state['yi'] && state['er'] && state['san']){
+        btn.classList.add('active')
+        btn.setAttribute('aa','bb')
+	}else{
+		btn.classList.remove('active')
+		btn.removeAttribute('aa','bb')
+	}
+}
+passagain.onblur=function(){
+
+    if(passagain.value!==pass.value){
+	addwarning(this,'input error')
+	state['yi']=false
+    }else {
+	deletewarning(this)
+	state['yi']=true
+   }
+   zhuce()
+}
+pass.onblur=function(){
+
+    if(pass.value.length<6){
+	addwarning(this,'input toless')
+	
+	state['er'] = false
+    }else {
+deletewarning(this)
+	state['er'] = true
+   }
+   zhuce()
+}
+
+// var checkuser=function(n){
+// 	for(var i=0;i<users.length;i++){
+// 		if(users[i]==n){
+// 			return true
+// 		}
+// 	}
+// 	users.push(n)
+// 	console.log(users)
+// 	return false
+// }
+user.onblur=function(){
+
+    if(users[this.value]){
+	addwarning(this,'User name already exists')
+	
+	state['san'] = false
+    }else {
+	deletewarning(this)
+  	state['san'] = true
+   }
+   zhuce()
+}
+btn.onclick=function(){
+   if(this.hasAttribute){
+  
+   this.innerHTML="whiatng..."
+   var t=setInterval(function(){
+   	location.href='zigame.html'
+   },2000)
+   }
+}
+// return a
+
+
+
+// 	var text=document.getElementsByName("text")[0]
+// 	text.onfocus=function(){
+// 		console.log('text focus')
+// 	}
+// 	text.onblur=function(){
+// 		console.log('text onblur')
+// 	}
+// 	text.onchange=function(){
+// 		console.log('text change')
+// 	}
+// 	var radio=document.getElementsByName('radio')
+// 	for(var i=0;i<radio.length;i++){
+
+    
+//     radio[i].onfocus=function(e){
+// 		console.log('radio1 focus',e)
+// 	}
+// 	radio[i].onblur=function(e){
+// 		console.log('radio1 blur',e)
+// 	}
+// 	radio[i].onchange=function(e){
+// 		console.log('radio1 change',e)
+// 	}
+
+// 	}
+// 	var checkbox=document.getElementsByName('checkbox')
+// 	for(var i=0;i<checkbox;i++){
+// 		checkbox[i].onfocus=function(){
+// 		console.log('checkbox1 focus')
+// 	}
+// 	checkbox[i].onblur=function(){
+// 		console.log('checkbox1 blur')
+// 	}
+// 	checkbox[i].onchange=function(){
+// 		console.log('checkbox1 change')
+// 	}
+
+// 	}
+// var select=document.getElementsByName('select')
+// for(var i=0;i<select.length;i++){
+// 	select[i].onfocus=function(){
+// 		console.log('select1 focus')
+// 	}
+// 	select[i].onblur=function(){
+// 		console.log('select1 blur')
+// 	}
+// 	select[i].onchange=function(){
+// 		console.log('select1 change')
+// 	}
+// }
+// var textarea=document.getElementsByName('textarea')[0]
+// 	textarea.onfocus=function(){
+// 		console.log('textarea focus')
+// 	}
+// 	textarea.onblur=function(){
+// 		console.log('textarea blur')
+// 	}
+// 	textarea.onchange=function(){
+// 		console.log('textarea change')
+// 	}
+</script>
+</html>

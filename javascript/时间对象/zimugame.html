@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="data.js"></script>
+</head>
+<style type="text/css">
+	.box{
+		width: 1000px;
+		height: 400px;
+		border:1px solid black;
+		position: relative;
+		overflow: hidden;
+		margin: 100px 70px ;
+	}
+	.zi{
+		width: 50px;
+		text-align: center;
+		line-height: 50px;
+		height: 50px;
+		background: red;
+		color: white;
+		/*opacity: 0.8;*/
+		position: absolute;
+		font-size: 30px;
+		font-weight: 700;
+		transition:all .001s ease;
+		border-radius: 50px;
+	}
+	.stop{
+		width: 100px;
+		height: 30px;
+		border: 1px solid black;
+		border-radius: 10px;
+		position: absolute;
+		top:300px;
+		left: 1200px;
+		background: #f4f4f4;
+		box-shadow: 0 2px 0 #bfbfbf;
+		font-size: 20px;
+		color: #434343;
+		line-height: 30px;
+		font-weight: 400;
+		text-align: center;
+		 font-family: "Microsoft YaHei",tahoma,arial;
+		cursor: pointer;
+}
+.tp1{
+top:350px;
+}
+.tp2{
+	top:400px;
+}
+.top{
+	width: 100%;
+	height: 100px;
+
+
+}
+marquee{
+	font-size: 50px;
+}
+</style>
+<body>
+<div class="top"><img src="./image/top.png" alt=""></div>
+	<div class="box">
+<!-- 		<div class="zi">a</div> -->
+	</div>
+	<div class="stop tp0">暂停</div>
+	<div class="stop tp1">开始</div>
+	<div class="stop tp2">重新开始</div>
+</body>
+<script type="text/javascript">
+ 	var box = document.querySelector('.box')
+ 	var box1 = document.querySelector('.tp0')
+ 	var box2 = document.querySelector('.tp1')
+ 	var box3 = document.querySelector('.tp2')
+ 	console.log(box)
+	var zimujihe = {};
+	var flag=true;
+	var shuzi=5;
+    var createzimu = function () {
+    	do{
+    		var zimu = String.fromCharCode(Math.floor(Math.random()*26+97))
+    	}while(zimujihe[zimu])
+    	
+    	var el = document.createElement('div')
+	 	var r=Math.floor(Math.random()*255)
+		var g=Math.floor(Math.random()*255)
+		var b=Math.floor(Math.random()*255)
+    	el.classList.add('zi')
+    	el.innerHTML = zimu
+    	el.style.backgroundColor='rgb('+r+','+g+','+b+')'
+    	box.appendChild(el)
+    	var ran=Math.ceil(Math.random()*5)
+    	zimujihe[zimu] = {top:0,yuansu:el,off:ran}
+    	el.style.left = Math.floor(Math.random()*(box.offsetWidth-el.offsetWidth)) + 'px'
+    }
+    for(var i=0;i<5;i++){
+    createzimu()
+}
+	var removezimu = function(zimu){
+		var el = zimujihe[zimu].yuansu
+		el.parentElement.removeChild(el)
+		delete zimujihe[zimu]
+	}    
+	box1.onclick=function(e){  		
+  				clearInterval(timerId)
+  				timerId=null
+  				flag=false
+  	}
+  	box2.onclick=function(e){  		
+  			
+  			if(timerId){
+  				return
+  			}	
+  			timerId=setInterval(diao,10)
+  			flag=true;
+  	}
+  	box3.onclick=function(e){  		
+  		for(var i in zimujihe){
+  			zimujihe[i].parentElement.removeChild(zimujihe[i])	
+  		}
+  		createzimu()
+  	}
+	document.onkeyup = function(e){
+  		if(e.keyCode=='32'){
+  			if(flag){
+  				clearInterval(timerId)
+  				timerId=null
+  				flag=false
+  			}
+  			else if(!flag){
+  					
+  				timerId=setInterval(diao,20)
+  				flag=true
+  			}
+  		}
+		var key = String.fromCharCode(e.keyCode).toLowerCase()
+		if(zimujihe[key]){
+			removezimu(key)
+			createzimu()
+		}
+	}
+	var xx=box.offsetHeight
+ 	var diao=function(){
+ 		var arr=[]
+ 		
+ 		for(var i in zimujihe){
+ 			
+ 			var data=zimujihe[i]
+ 			var el=data.yuansu
+ 			data.top+=data.off
+            if(data.top>x){
+            	arr.push(i)
+            }
+ 		}
+ 		if(arr.length){
+
+ 			removezimu(arr[i])
+            createzimu()
+ 		}
+ 	}
+
+var timerId=setInterval(diao,20)
+
+
+</script>
+</html>

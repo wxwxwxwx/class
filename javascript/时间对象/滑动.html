@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.da{
+		width: 100px;
+		height:100px;
+		border: 1px solid black;
+		float: left;
+		opacity: 0.6;
+		margin: 10px;
+
+	}
+	.selected{
+		background: pink;
+		
+	}
+</style>
+<body>
+	<div class="da"></div>
+	<div class="da"></div>
+	<div class="da"></div>
+	<div class="da"></div>
+	<div class="da"></div>
+
+
+
+</body>
+<script type="text/javascript">
+	var da=document.getElementsByClassName('da')
+	for(var i=0,el;i<da.length;i++){
+		el=da[i]
+		el.onclick=(function(){
+         	var flag=true;
+         	return function(e){
+         		if(e.ctrlKey){
+         			if(flag){
+         				this.className='da selected'
+         				flag=false;
+         			}else if(!flag){
+         				if(flag===false){
+         					this.style.position='static'
+         				}
+         				this.className='da'
+         				flag=true
+         			}
+         		}
+         	}
+		})()
+	}
+	document.ondblclick=function(e){
+		var lis=document.getElementsByClassName('selected')
+		for(var i=0,els;i<lis.length;i++){
+			els=lis[i]
+			els.style.position='absolute'
+			els.style.top=e.clientY-els.offsetHeight/2+'px'
+			els.style.left=e.clientX-els.offsetWidth/2+'px'
+		}
+
+    document.onmousedown=function(e){
+    	var cX = e.clientX
+    	var cY = e.clientY
+    }
+    document.onmouseup=function(er){
+    	var offx = er.clientX-cX
+    	var offy = er.clientY-cY
+    	var els=document.getElementsByClassName('selected')
+    	for()
+    }
+	}
+	
+
+</script>
+</html>

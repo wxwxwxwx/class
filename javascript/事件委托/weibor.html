@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+		width: 320px;
+		height: 500px;
+		margin: auto;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: 1px solid #123466;
+		padding: 20px;
+		overflow: hidden;
+	}
+	.title{
+		width: 300px;
+		height: 12px;
+        border:1px solid #121277;
+        padding: 10px;
+        margin-bottom: 10px;
+	}
+	.body{
+	/*	position: relative;*/
+		width: 370px;
+		height: 450px;
+		overflow-y: auto;
+	}
+	.body .item{
+        width: 300px;
+		height: 100px;
+        border:1px solid #121277;
+        padding: 10px;
+        margin-bottom: 10px;
+	}
+	.name{
+     color: #b72e0a;
+	}
+	.zan{
+ 	width: 320px;
+		height: 30px;
+        
+		color:#5D5D6B;
+		cursor: pointer;
+	}
+	.active{
+		color:#303035; 
+	}
+	.loading{
+		width:220px;
+		height:25px;
+		background:#C3B9B9;
+		z-index: 10;
+		padding: 50px;
+		color: #131325;
+		font-size: 20px;
+	}
+	.input{
+		width:300px;
+		height:125px;
+		display: none;
+		background: white;
+		z-index: 20;
+	}
+	textarea{
+		padding: 10px;
+		resize:none;
+		background: white;
+		z-index: 20;
+	}
+	.min{
+		width: 30px;
+    	height: 15px;
+    	border-radius: 30px;
+    	background: #999;
+    	position: absolute;
+    	display: none;
+    	top: 54px;
+    	left: 150px;
+    	
+	}
+    .minn{
+    	color: white;
+    	margin: 0 auto;
+    	font-size: 30px;
+    	font-weight: 900;
+    	position: absolute;
+    	top: -10px;
+    	left: 7px;
+    }
+    .p{
+    	width: 110px;
+    	height: 20px;
+    	border-radius: 10px;
+    	padding: 2px 3px;
+    	position: absolute;
+    	top: 144px;
+    	float: left;
+    /*	display: inline-block;*/
+    	background: #EAA21A;
+    	color: white;
+    }
+    .botton{
+    	width: 50px;
+    	height: 20px;
+    	padding: 2px 3px;
+    	border-radius: 2px;
+    	/*background: #69EA1A;*/
+    	background: #70796B;
+    	color: white;
+    	float: right;
+        display: inline-block;
+    }
+    .bottons{
+    	background: #69EA1A;
+    }
+    .pp{
+    	width: 190px;
+    	height: 20px;
+    	border-radius: 10px;
+    	padding: 2px 3px;
+    	position: absolute;
+    	top: 144px;
+    	left: 40px;
+    	float: left;
+    	/*display: inline-block;*/
+    	background: #EAA21A;
+    	color: white;
+    }
+</style>
+<body>
+	<div class="box">
+		<div class="title">You have five new message</div>
+		<div class="min">
+			<div class="minn">+</div>
+		</div>
+		<div class="loading">Please waiting loading...</div>
+		<div class="input">
+			<textarea class="textarea" style="width:300px;height:72px;color:#999999;">You can input to 30 words...
+				
+			</textarea>
+			<p class="p">Input to more</p>
+			<p class="pp">Can input 30 words</p>
+
+			<span class="botton">submit</span>
+		</div>
+		
+		<div class="body">
+			<!-- <div class="item">
+				<span class="name">zhangsan</span>
+				<p class="cent">To day is a good day</p>
+				
+				<span class="zan">❤(323)</span>
+				
+			</div>
+			<div class="item">
+				<span class="name">lisi</span>
+				<p class="cent">Everyday is a new day</p>
+				
+				<span class="zan">❤(45234)</span>
+				
+			</div>
+			<div class="item">
+				<span class="name">wangwu</span>
+				<p class="cent">Be happy!Be confident</p>
+				
+				<span class="zan">❤(431)</span>
+				
+			</div>
+			<div class="item">
+				<span class="name">zhaoliu</span>
+				<p class="cent">I whant to go to shopping</p>
+				
+				    <span class="zan">❤(654)</span>
+				    
+				
+			</div> -->
+		</div>
+	</div>	
+</body>
+<script type="text/javascript">
+var data = [
+{names:'liuqi',cent:'I am so sad',shul:'(34)'},
+{names:'wuy',cent:'I will fine',shul:'(233456)'},
+{names:'bob',cent:'Play basketball',shul:'(56)'},
+{names:'lisa',cent:'Have a good time',shul:'(567)'}
+];
+var load=document.getElementsByClassName('loading')[0]
+var title = document.querySelector('.title')
+var body = document.querySelector('.body')
+var input = document.querySelector('.input')
+var text = document.querySelector('.textarea')
+var min = document.querySelector('.min')
+var title = document.querySelector('.title')
+var p = document.querySelector('.p')
+var pp = document.querySelector('.pp')
+var submit = document.querySelector('.botton')
+pp.style.display='none'
+p.style.display='none'
+title.innerHTML=''
+load.style.display='block'
+var t=setTimeout(function(){
+title.innerHTML='You have five new message'
+input.style.display='block'
+load.style.display='none'
+
+        for(var i=0 ,el;i<4;i++){
+        var divs = document.createElement('div')
+        el=data[i]
+        divs.classList.add('item')
+        divs.innerHTML='<span class="name">'+el.names+'</span><p>'+el.cent+'</p><div class="dianzan"><span class="zan">❤'+el.shul+'</span>'
+        body.insertBefore(divs,body.firstElementChild)      
+        }
+},2000)
+text.onclick=function(){
+	text.innerHTML=''
+	pp.style.display='inline-block'
+}
+text.onblur=function(){
+	text.innerHTML='You can input to 30 words...'
+	pp.style.display='none'
+}
+
+	// var title = document.querySelector('.title')
+	// var item = document.querySelectorAll('.item')
+	// var body = document.querySelector('.body')
+	// var heart = body.getElementsByClassName('zan')
+	// var naem = body.getElementsByClassName('name')
+	// var cent = body.getElementsByClassName('cent')
+body.onclick=function(e){
+ 	var el=e.target
+ 	console.log(el)
+ 	if(el.classList.contains('zan')){
+         like.call(el,e)
+ 	}
+}
+var like=function(){
+    if(this.classList.contains('active')){
+    	this.classList.toggle('active')
+    	var a=parseInt(this.innerHTML.slice(2,-1))-1
+			this.innerHTML='❤('+a+')'
+    }else{
+		this.classList.toggle('active')
+    	var a=parseInt(this.innerHTML.slice(2,-1))+1
+			this.innerHTML='❤('+a+')'
+    }
+}	
+body.onscroll=function(){
+	input.style.display='none'
+	text.style.display='none'
+	min.style.display='block'
+
+}
+min.onclick=function(){
+	input.style.display='block'
+	text.style.display='block'
+	min.style.display='none'
+}
+title.onclick = function(){
+		for(var i=0 ,el;i<5;i++){
+        var divs = document.createElement('div')
+        var ran = String.fromCharCode(Math.floor(Math.random()*26+97))
+        var ranss = String.fromCharCode(Math.floor(Math.random()*26+97))
+        var rans = Math.floor(Math.random()*400)
+        var words = Math.floor(Math.random()*80000+10000)
+         var words1 = Math.floor(Math.random()*90000+10000)
+        divs.classList.add('item')
+        // var arr=[]
+        // var obj={name:'wangwu',content:'',zan:'rans'}
+        // arr.push(obj)
+         var obj=String.fromCharCode(words)
+         var obj1=String.fromCharCode(words1)
+        divs.innerHTML='<span class="name">'+obj+''+obj1+'</span><p>'+ran+''+ranss+'</p><div class="dianzan"><span class="zan">❤('+rans+')</span>'
+        body.insertBefore(divs,body.firstElementChild)
+        title.innerHTML='No message'
+        title.style.color='#ccc'
+        }
+	}
+	text.onchange=function(){
+		
+		if(text.value.length>30){
+			// console.log(text.value.length)
+
+			p.style.display='inline-block'
+			submit.classList.remove('bottons')
+		}else{
+			p.style.display='none'
+            submit.classList.add('bottons')
+		}
+	}
+	submit.onclick=function(){
+       var divs = document.createElement('div')
+       
+        divs.classList.add('item')
+        divs.innerHTML='<span class="name">me</span><p>'+text.value+'</p><div class="dianzan"><span class="zan">❤(352345)</span>'
+        body.insertBefore(divs,body.firstElementChild)
+	}
+text.onkeyup=function(){
+	var a=text.value.length
+	var num=30-a;
+	if(num<0){
+		pp.style.display='none'
+		p.style.display='inline-block'
+	}else{
+pp.innerHTML='Can input '+num+' words'
+}
+}
+// body.onclick=function(e){
+// 	var b=e.targer
+
+//  if(b.classList.contains('zan')){
+// 	function(b,e)
+// }
+// }
+
+
+
+	// console.log(item,body,heart,shul)
+
+// for(var i=0,el;i<heart.length;i++){
+// el=heart[i]
+
+// el.onclick=(function(){
+// 	var flag=true
+// 	return function(){
+// 		if(flag){
+// 			this.classList.add('active')
+// 			var a=parseInt(this.innerHTML.slice(2,-1))+1
+// 			this.innerHTML='❤('+a+')'
+// 			flag=false;
+// 		}else{
+// 			this.classList.remove('active')
+// 			var a=parseInt(this.innerHTML.slice(2,-1))-1
+// 			this.innerHTML='❤('+a+')'
+// 			flag=true;
+// 		}
+
+// }
+// }
+// )()}
+
+
+
+	
+</script>
+</html>

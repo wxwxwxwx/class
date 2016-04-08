@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+		width: 500px;
+		height: 500px;
+		position: absolute;
+		margin: auto;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		top: 0;
+		border: 5px solid #aaaaff;
+		padding: 30px;
+	}
+	.son{
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+		margin: 10px;
+		background: yellow;
+	}
+	.son div{
+		width: 30px;
+		height: 30px;
+		margin: 5px;
+        border: 1px solid black;
+       display: inline-block;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="son">
+			<div class="dianzan">1</div>
+			<div class="cai">2</div>
+			<div class="pinglun">3</div>
+			<div class="jubao">4</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var box=document.getElementsByClassName('box')[0]
+	
+	
+	
+	
+	// console.log(box)
+	box.ondblclick = function(){
+		var a=document.createElement('div')
+		a.classList.add('son')
+		a.innerHTML='<div class="dianzan">1</div><div class="cai">2</div><div class="pinglun">3</div><div class="jubao">4</div>'
+		box.insertBefore(a,box.firstElementChild)
+
+	}
+	box.onclick=function(e){
+     var b=e.target
+    
+     if(b==this){
+     	return
+     } else if(b.classList.contains('dianzan')){
+     	fu1.call(b,e)
+     }
+      else if(b.classList.contains('cai')){
+     	fu2.call(b,e)
+     }
+      else if(b.classList.contains('pinglun')){
+     	fu3.call(b,e)
+     }
+     else if(b.classList.contains('jubao')){
+     	fu4.call(b,e)
+     }
+
+	}
+     var fu1=function(){ 
+     		this.style.background='red'
+     }
+     var fu2=function(){ 	
+        this.style.background='blue'
+        console.log(2)
+     }
+     var fu3=function(){     
+       this.style.background='green'
+        console.log(3)
+     }
+     var fu4=function(){     	
+       this.style.background='pink'
+        console.log(4)
+     }
+</script>
+</html>

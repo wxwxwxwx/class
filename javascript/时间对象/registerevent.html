@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	ul,li{
+		list-style: none;
+		padding: 0;
+		margin: 0;		
+	}
+	ul{
+		width: 400px;
+		height: 500px;
+		margin :auto;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		border: 1px solid black;
+		padding: 20px 40px;
+	}
+	ul li{
+		display: block;
+		padding: 20px 0;
+		
+	}
+	input{
+		border: none;
+		outline: none;
+		width:100%;
+		padding: 5px 0;
+		border-bottom: 1px solid black;
+	/*	margin-bottom: 30px;*/
+	}
+	.btn{
+		margin-top: 20px;
+		background: #ccc;
+		color: #999;
+		padding: 10px 20px;
+	}
+	.active{
+		display: inline-block;
+		background: #ff4400;
+		color: white;
+		padding: 3px 6px;
+		border-radius: 10px;
+		margin: 10px;
+	}
+	.btnli{
+    	margin-top: 30px;
+	}
+	.make{
+		background: #aadd44;
+		color:white;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<ul>
+		<li><input type="text" name="user"><span ></span></li>
+		<li><input type="password" name="pass"><span ></span></li>
+		<li><input type="password" name="passagain"><span ></span></li>
+		<li class="btnli"><span class="btn" >make sure</span></li>
+	</ul>
+</body>
+<script type="text/javascript">
+var user=document.getElementsByName('user')[0]
+var pass=document.getElementsByName('pass')[0]
+var passagain=document.getElementsByName('passagain')[0]
+var btn=document.getElementsByClassName('btn')[0]
+var users={
+	'zhangsan':true,
+	'lisi':true,
+	'wangwu':true
+},
+state={
+	'yi':false,
+	'er':false,
+	'san':false
+}
+
+var addwarning=function(el,info){
+var el=el.parentElement.querySelector('span')
+el.classList.add('active')
+el.innerHTML=info
+}
+var check=function(){
+	if(state['yi'] && state['er'] && state['san']){
+    btn.classList.add('make')
+    btn.setAttribute('aa','bb')
+	}else{
+		btn.classList.remove('make')
+		btn.removeAttribute('aa','bb')
+	}
+}
+var removewarning=function(el){
+var el=el.parentElement.querySelector('span')
+el.classList.remove('active')
+el.innerHTML=''
+}
+user.onblur=function(){
+if(users[this.value]){
+addwarning(this,'username already exists')
+state['yi']=false
+
+}else{
+	removewarning(this)
+	state['yi']=true
+}check()
+}
+pass.onblur=function(){
+if(this.value.length<6){
+addwarning(this,'Input to less')
+state['er']=false
+}else{
+	removewarning(this)
+	state['er']=true
+}check()
+}
+passagain.onblur=function(){
+if(this.value!=pass.value){
+addwarning(this,'Input error')
+state['san']=false
+}else{
+	removewarning(this)
+	state['san']=true
+}check()
+}
+btn.onclick=function(){
+	if(this.hasAttribute){
+		this.innerHTML='whating...'
+		var t=setTimeout(function(){
+			location.href='zigame.html'
+		},2000)
+	}
+}
+</script>
+</html>

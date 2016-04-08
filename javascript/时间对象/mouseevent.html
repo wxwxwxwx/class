@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.da{
+		/*position: ab;*/
+		width: 100px;
+		height: 100px;
+		border: 3px solid black;
+		float: left;
+		margin: 10px;
+		opacity: 0.6;
+		cursor: pointer;
+		transition:all .5s ease;
+	}
+	.selected{
+		background: #ed890d;
+	}
+	.one{
+		width: 16px;
+		height: 16px;
+		border:1px dashed black;
+		background:red;
+		opacity: 0.7;
+		display: none;
+		position: absolute;
+		top: 500px;
+		left: 1000px;
+	}
+</style>
+<body>
+	<div class="da">1</div>
+	<div class="da">2</div>
+	<div class="da">3</div>
+	<div class="da">4</div>
+	<div class="da">5</div>
+<div class="one"></div>
+</body>
+<script type="text/javascript">
+	// var el = document.getElementById("da");
+	// el.onmouseover = function(e){
+	// 	console.log('onmouseover',e)
+	// }
+	// el.onmousedown = function(e){
+	// 	console.log('onmousedown',e)
+	// }
+	// el.onmousemove = function(e){
+	// 	console.log('onmousemove',e)
+	// }
+	// el.onmouseup = function(e){
+	// 	console.log('onmouseup',e)
+	// }
+	// el.onmouseout = function(e){
+	// 	console.log('onmouseout',e)
+	// }
+	// 	el.ondblclick = function(e){
+	// 	console.log('ondblclick',e)
+	// }
+	// el.onclick=(function(){
+	// 	var flag=true
+	// 	return function(e){
+ //           if(e.shiftKey&&e.altKey&&e.ctrlKey){
+ //           	el.className=flag?'da selected':'da'
+ //           	flag=!flag
+ //           }
+	// 	}
+	// })()
+
+	// var els=document.getElementsByClassName('da')
+	// var x=document.getElementsByClassName('flag')[0]
+	// console.log(els)
+	// for( var i=0;i<els.length;i++){
+ //     els[i].onclick=(function(){
+ //     	var flag=true;
+ //     	return function(e){
+ //     		if(e.ctrlKey){
+ //           	this.className=flag?'da selected':'da'
+ //           	if(flag===false){
+ //           		this.style.position='static'
+ //           	}
+ //           	flag=!flag
+ //           	x.innerHTML=flag
+ //           }
+ //     	}
+ //     })()    	
+	// }
+	// document.ondblclick=function(e){
+ //     		var ss=document.getElementsByClassName('selected')
+ //  			for(var i=0;i<ss.length;i++){
+ //    	 	var el=ss[i] 
+ //     		if(){
+ //         alert('你没有选中')
+ //         }
+ //         else{ 
+ //         	el.style.position='absolute'
+ //          el.style.left=e.clientX-el.offsetWidth/2+"px"
+ //           el.style.top=e.clientY-el.offsetHeight/2+"px"
+ //     	}
+ //     }
+ //     }
+	
+// var el=document.getElementsByClassName('da')
+
+
+// 	for(var i=0;i<el.length;i++){
+//     el[i].onclick=(function(){
+//     	var flag=true;
+//     	var r=Math.floor(Math.random()*255)
+//     	var g=Math.floor(Math.random()*255)
+//     	var b=Math.floor(Math.random()*255)
+//     	return function(e){
+//             if(e.ctrlKey){
+//             	if(flag){
+//             	this.className='da selected'
+//             	this.style.backgroundColor='rgb('+r+','+g+','+b+')'
+//             	flag=false
+//             }else if(!flag){
+//             	if(flag===false){
+//             		this.style.position='static'
+//             	}
+//             	this.className='da'
+//             	this.style.backgroundColor='white'
+//             	flag=true
+//             }
+//             }
+//     	}
+//     })()
+// }
+
+// document.ondblclick=function(e){
+// 	var els=document.getElementsByClassName('selected')
+// 	for(var i=0;i<els.length;i++){
+// 		var el=els[i]
+// 		el.style.position='absolute'
+// 		el.style.top=e.clientY-el.offsetHeight/2+'px'
+// 		el.style.left=e.clientX-el.offsetWidth/2+'px'
+// 	}
+// }
+
+var el=document.getElementsByClassName('da')
+for(var i=0;i<el.length;i++){
+	el[i].onclick=(function(){
+		var flag = true;
+		var r=Math.floor(Math.random()*255)
+		var g=Math.floor(Math.random()*255)
+		var b=Math.floor(Math.random()*255)
+		return function(e){
+			if(e.ctrlKey){
+			if(flag){
+				this.className='da selected'
+				this.style.backgroundColor='rgb('+r+','+g+','+b+')'
+				flag = false
+			}else if(!flag){
+				if(flag === false){
+					this.style.position='static'
+				}
+				this.className = 'da'
+				this.style.backgroundColor = 'transparent'
+				flag = true
+			}}
+		}
+	})()
+}
+var one=document.getElementsByClassName('one')[0] 
+document.ondblclick=function(e){
+	var els=document.getElementsByClassName('selected')
+	for(var i=0;i<els.length;i++){
+		var el=els[i]
+		el.style.position='absolute'
+		el.style.top=e.clientY-el.offsetHeight/2+'px'
+		el.style.left=e.clientX-el.offsetWidth/2+'px'
+
+	}
+	one.style.display='block'
+ document.onmousedown = function(e){
+ 	
+ 	var ex = e.clientX
+ 	var ey = e.clientY
+ 	
+ 	one.style.top=ey+'px'
+ 	one.style.left=ex+'px'
+ 	document.onmousemove=function(er){
+    var cX=er.clientX;
+	var cY=er.clientY;
+	one.style.left=cX-8+"px"
+	one.style.top=cY-8+"px"
+ 	}
+ 	document.onmouseup = function(ev){
+  	var offx = ev.clientX-ex
+ 	var offy = ev.clientY-ey
+	var els=document.getElementsByClassName('selected')   
+	 
+ 	for(var i = 0,el;i<els.length;i++){
+ 		el=els[i]
+ 		el.style.top=el.offsetTop+offy+'px'
+  		el.style.left=el.offsetLeft+offx+'px'
+        
+ 	}
+ 	}
+ }
+}
+
+</script>
+</html>
