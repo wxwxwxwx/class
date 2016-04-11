@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	body{
+		padding: 30px;
+	}
+	.box{
+		width: 90%;
+		margin: auto
+		left:0;
+		right: 0;
+		border: 1px solid #C5BCBC;
+		text-align: center;
+		padding: 30px;
+		display: block;
+	}
+	.box td{
+		display: block;
+		float: left;
+		border-bottom: 1px solid black;
+		padding: 5px;
+		width: 15%;
+		height: 30px;
+	}
+	table{
+		width: 100%;
+	}
+	.edit{
+		padding: 3px 7px;
+		/*background: #aa3499;*/
+		margin-right: 10px;
+		cursor: pointer;
+		font-size: 20px;
+		/*color: white;*/
+	}
+	.editsuccess{
+		padding: 3px 7px;
+		background: #aa3499;
+		margin-right: 10px;
+		cursor: pointer;
+		
+	}
+	.delete{
+		padding: 3px 7px;
+		/*background: #aa3499;*/
+		cursor: pointer;
+		font-size: 20px;
+		/*color: white;*/
+	}
+	tr{
+		height: 50px;
+	}
+
+	.add{
+		margin-top: 10px;
+		padding: 10px 200px;
+		background: #E86A11;
+		display: inline-block;
+		cursor: pointer;
+		color: white;
+		/*float: right;*/
+	}
+	.sure{
+		padding: 3px 7px;
+		background: #aa3499;
+		cursor: pointer;
+		color: white;
+	}
+</style>
+<body>
+	<div class="box">
+		<h1>Student online management system</h1>
+		<table>
+		<thead>
+			<tr>
+				<td> Student ID </td>
+				<td> Name </td>
+				<td> Sex </td>
+				<td> Age </td>
+				<td> From </td>
+				<td> Operate </td>
+			</tr>
+		</thead>
+		<tbody class="tbody">
+			<!-- <tr>
+				<td> 201217014127 </td>
+				<td> WangXin </td>
+				<td> girl </td>
+				<td> 20 </td>
+				<td> Shanxi </td>
+				<td><span class="edit">Edit</span><span class="delete">Delete</span></td>
+			</tr>
+			<tr>
+				<td> 201217014125 </td>
+				<td> WangQi </td>
+				<td> boy </td>
+				<td> 22 </td>
+				<td> Shanxi </td>
+				<td><span class="edit"> Edit</span><span class="delete">Delete</span></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="id" value=""> </td>
+				<td> <input type="text" name="name" value=""> </td>
+				<td> <input type="text" name="sex" value=""> </td>
+				<td> <input type="text" name="age" value=""></td>
+				<td> <input type="text" name="from" value=""> </td>
+				<td><span class="edit"> Edit</span><span class="delete">Delete</span></td>
+			</tr>
+ -->
+		</tbody>
+		</table>
+		<div ><span class="add">✚ ADD···</span></div>
+	</div>
+</body>
+<script type="text/javascript">
+var tbody=document.querySelector('.tbody')
+	if(localStorage.students){
+        var students = JSON.parse(localStorage.students)
+	}else{
+		var students = [
+		{id:17014111,name:'Bob',sex:'boy',age:'23',from:'Shanxi'},
+		{id:17014112,name:'Alice',sex:'girl',age:'24',from:'Beijin'},
+		{id:17014113,name:'Jnif',sex:'boy',age:'27',from:'Xizang'},
+		{id:17014114,name:'Laola',sex:'tirl',age:'24',from:'Anhui'}
+		];
+		localStorage.setItem('students',JSON.stringify(students));
+	}
+	var xuanran=function(){
+		for ( var i in students){
+	var _d = students[i]
+	var newmassage = document.createElement('tr')
+	newmassage.innerHTML='<td> '+_d.id+' </td><td> '+_d.name+' </td><td> '+_d.sex+' </td><td> '+_d.age+' </td><td> '+_d.from+' </td><td><span class="edit" data-id="'+_d.id+'">✐ </span><span class="delete" data-id="'+_d.id+'">✖ </span></td>'
+	tbody.appendChild(newmassage)
+	}
+	}
+
+xuanran();
+
+tbody.onclick = function(e){
+	var el = e.target
+	if(el.classList.contains('delete')){
+		deleteHander.call(el,e)
+	 }
+	else if(el.classList.contains('sure')){
+     	fu4.call(el,e)
+     }
+     else if(el.classList.contains('edit')){
+     	editmassage.call(el,e)
+     }
+}
+
+var deleteoperate = function(id){
+	var s = []
+	for(var i in students){
+		var _d=students[i]
+
+		if(_d.id!==id){
+	       s.push(_d)
+		}
+	}
+	 students=s;
+	localStorage.setItem('students',JSON.stringify(students))
+	console.table(students)
+}
+var deleteHander = function(e){
+	tbody.removeChild(this.parentElement.parentElement)
+	var id=parseInt(this.getAttribute('data-id'))
+
+    console.log(id)
+	deleteoperate(id)
+}
+var adxx = document.querySelector('.add')
+
+adxx.onclick = function(){
+	
+    var addtext = document.createElement('tr')
+	addtext.innerHTML = '<td><input type="text" name="id" value=""> </td><td> <input type="text" name="name" value=""> </td><td> <input type="text" name="sex" value=""> </td><td> <input type="text" name="age" value=""></td><td> <input type="text" name="from" value=""> </td><td><span class="sure">Make sure</span></td>'
+	tbody.appendChild(addtext)	
+}
+var fu4 = function(){
+	// tbody.removeChild(this.parentElement.parentElement)
+var id=document.getElementsByName('id')[0]
+var name=document.getElementsByName('name')[0]
+var sex=document.getElementsByName('sex')[0]
+var age=document.getElementsByName('age')[0]
+var from=document.getElementsByName('from')[0]
+addnewmassage(id,name,sex,age,from)	
+tbody.removeChild(this.parentElement.parentElement)
+
+
+}	
+var addnewmassage=function(a,b,c,d,e){
+	var aa = document.createElement('tr')
+	aa.innerHTML='<td> '+a.value+' </td><td> '+b.value+' </td><td> '+c.value+' </td><td> '+d.value+' </td><td> '+e.value+' </td><td><span class="edit" data-id="'+a.value+'">✐ </span><span class="delete" data-id="'+a.value+'">✖ </span></td>'
+	tbody.appendChild(aa)
+	var bb={id:a.value,name:b.value,sex:c.value,age:d.value,from:e.value}
+	students.push(bb)
+	localStorage.setItem('students',JSON.stringify(students))
+}
+var editmassage = function(e){
+// var editcent=document.querySelector('.edit')
+for(var i in students){
+var bb=students[i]
+var id=parseInt(this.getAttribute('data-id'))
+if(bb.id===id){
+	this.parentElement.parentElement.innerHTML='<td><input type="text" name="id" value="'+bb.id+'"> </td><td> <input type="text" name="name" value="'+bb.name+'"> </td><td> <input type="text" name="sex" value="'+bb.sex+'"> </td><td> <input type="text" name="age" value="'+bb.age+'"></td><td> <input type="text" name="from" value="'+bb.from+'"> </td><td><span class="sure">Edit</span></td>'
+		}
+	}
+}
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+		width: 600px;
+		height: 600px;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		border: 3px solid black;
+		background:#f4f4f4;
+	}
+	.xiao{
+		width: 200px;
+		height: 200px;
+		margin: 30px;
+		border: 1px solid black;
+		background: #88aa22;
+		display:inline-block;
+	}
+	.xiao span{
+		width: 60px;
+		height: 60px;
+		margin: 17px;
+		border: 1px solid black;
+		background: #ccc;
+		display: inline-block;
+		text-align: center;
+		line-height: 60px;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="xiao">
+			<span class="zan">赞</span>
+			<span class="cai">踩</span>
+			<span class="pinglun">评论</span>
+			<span class="jubao">举报</span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var box = document.getElementsByClassName('box')[0]
+	box.ondblclick = function(){
+		var el = document.createElement('div')
+		el.classList.add('xiao')
+		el.innerHTML='<span class="zan">赞</span><span class="cai">踩</span><span class="pinglun">评论</span><span class="jubao">举报</span>'
+		box.appendChild(el)
+	}
+	box.onclick = function(e){
+		var el=e.target;
+		if(el.classList.contains('zan')){
+			fn1.call(el,e)
+		}else if(el.classList.contains('cai')){
+			fn2.call(el,e)
+		}else if(el.classList.contains('pinglun')){
+			fn3.call(el,e)
+		}else if(el.classList.contains('jubao')){
+			fn4.call(el,e)
+		}
+	}
+	var fn1 = function(){
+		this.style.background='red'
+	}
+	var fn2 = function(){
+		this.style.background='green'
+	}
+	var fn3 = function(){
+		this.style.background='blue'
+	}
+	var fn4 = function(){
+		this.style.background='#EF9C00'
+	}
+</script>
+</html>

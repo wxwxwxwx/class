@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+
+		width: 90%;
+		border: 1px solid black;
+        padding: 30px;
+        position: relative;
+        margin:30px auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+	}
+	.box table{
+		width: 100%;
+		border-spacing: 0;
+	}
+	.box th,.box td{
+		width: 15%;
+		height: 50px;
+		border-bottom: 1px solid black;
+	}
+	.add{
+		padding: 10px 150px;
+		background: #FB701C;
+		margin-top: 20px;
+		color: white;
+		 cursor: pointer;
+	}
+	.delete,.edit,.sure{
+        color: black;
+        font-size: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+	}
+	.tbody input{
+		width: 80%;
+	}
+	th{
+		font-size: 20px;
+		color: #908A86;
+	}
+</style>
+<body>
+	<div class="box">
+		<dic class="tip"></dic>
+		<h1>Students online management system</h1>
+		<table>
+			<thead>
+				<tr>
+					<th> Student ID </th>
+					<th> Name </th>
+					<th> Sex </th>
+					<th> Age </th>
+					<th> From </th>
+					<th> Operate </th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+				
+			</tbody>
+		</table>
+		<div class="add">ADD···</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var tbody = document.querySelector('.tbody')
+	var tip = document.querySelector('.tip')
+
+	if(localStorage.students){
+        var students = JSON.parse(localStorage.students)
+	}else{
+		var students = [
+		{id:10011,name:'Bob',sex:'boy',age:23,from:'Shanxi'},
+		{id:10012,name:'Alice',sex:'girl',age:'24',from:'Beijin'},
+		{id:10013,name:'Jnif',sex:'boy',age:'27',from:'Xizang'},
+		{id:10014,name:'Laola',sex:'tirl',age:'24',from:'Anhui'}
+		];
+		localStorage.setItem('students',JSON.stringify(students));
+	}
+	var render = function(){
+		for ( var i in students ){
+		var _d = students[i]
+		var newmassage = document.createElement('tr')
+		newmassage.innerHTML = '<td data-role="id"> '+_d.id+' </td><td data-role="name"> '+_d.name+' </td><td data-role="sex"> '+_d.sex+' </td><td data-role="age"> '+_d.age+' </td><td data-role="from"> '+_d.from+' </td><td><span class="edit" data-id="'+_d.id+'"> ✐ </span><span class="delete" data-id="'+_d.id+'"> ✖ </span></td>'
+		newmassage.setAttribute('data-id',_d.id)
+		tbody.appendChild(newmassage)
+	}
+	}
+
+	render();
+
+	tbody.onclick = function(e){
+		var el = e.target
+		if( el.classList.contains('delete') ){
+			deleteHander.call(el,e)
+		}else if( el.classList.contains('edit') ){
+			toggleEdit(el.parentElement.parentElement)
+			tip.innerHTML = ''
+		}
+	}
+	var timerId
+	tbody.onkeyup = function(e){
+		
+		var el = e.target
+		var tr = el.parentElement.parentElement
+		var id = Number ( tr.getAttribute('data-id') )
+		var key = el.parentElement.getAttribute('data-role')
+		var value = el.value
+		console.log(id,key,value)
+		tip.innerHTML='saveing···'
+        clearTimeout(timerId)
+        timerId = setTimeout(function(){
+        	updateStudent(id,key,value)
+        	
+        },2000)
+
+		
+		
+	}
+	var updateStudent = function(id,key,value){
+		for(var i=0;i<students.length;i++){
+			if(students[i].id===id){
+				students[i][key]=value
+
+			}
+			
+		}
+		tip.innerHTML='success!'
+		localStorage.setItem('students',JSON.stringify(students));
+	}
+	var deleteoperate = function(id){
+		var s = []
+		for(var i in students){
+			var _d=students[i]
+
+			if(_d.id!==id){
+		       s.push(_d)
+			}
+		}
+		 students=s;
+		localStorage.setItem('students',JSON.stringify(students))
+	}
+	var deleteHander = function(e){
+		tbody.removeChild(this.parentElement.parentElement)
+		var id = parseInt( this.getAttribute('data-id') )
+
+	    // console.log(id)
+		deleteoperate(id)
+	}
+	var add = document.getElementsByClassName('add')[0]
+	add.onclick = function(){
+		var xuehao;
+		if( students.length){
+			xuehao = Number(students[students.length-1].id + 1)
+		}else{
+			xuehao = 10011;
+		}
+		var _d = {id:xuehao,name:'',sex:'',age:'',from:''}		
+		var tr = document.createElement('tr')
+		tr.setAttribute('data-id',_d.id)
+		tr.innerHTML='<td data-role="id"> '+_d.id+' </td><td data-role="name"> '+_d.name+' </td><td data-role="sex"> '+_d.sex+' </td><td data-role="age"> '+_d.age+' </td><td data-role="from"> '+_d.from+' </td><td><span class="edit" data-id="'+_d.id+'"> ✐ </span><span class="delete" data-id="'+_d.id+'"> ✖ </span></td>'
+		
+		tbody.appendChild(tr)
+		students.push(_d)
+		
+		// console.table(students)
+		localStorage.setItem('students',JSON.stringify(students))
+		toggleEdit(tr)
+		tip.innerHTML = ''
+	}
+	// var toggleEdit = function(tr){
+	// 	var tds = tr.querySelectorAll('td[data-role]')
+ //        for( var i in tds ){
+ //            var td,temp;
+ //            td = tds[i]
+ //            temp = td.innerHTML;
+ //        	td.innerHTML = '<input type="text" value="'+temp+'">'
+ //        }
+	// }
+	var toggleEdit = function(tr){
+		var tds = tr.querySelectorAll('td[data-role]')
+		var aa = tr.querySelector('.edit')
+		if(tr.classList.contains('editing')){
+			for( var i = 0,el,temp;i<tds.length;i++){
+		        	el = tds[i].querySelector('input')
+		        	temp = el.value;
+		        	// console.log(temp)
+		        	tds[i].innerHTML = temp;
+		        	// console.log(el,tds[i],temp)
+		        }
+		        tip.innerHTML = ''
+			tr.classList.remove('editing')
+	        aa.innerHTML = " ✐ "
+        }else{
+        	// td[1].querySelector('input').value       	
+	        for( var i in tds ){
+            var td,temp;
+            td = tds[i]
+            temp = td.innerHTML;
+        	td.innerHTML = '<input type="text" value="'+temp+'">'
+        }tr.classList.add('editing')
+	        aa.innerHTML = " ✔ "
+
+        }
+        // console.table(students)	    
+
+	}
+	// var editHander = function(e){
+	// 	if(this.innerHTML == " ✐ "){
+	// 	toggleEdit(this.parentElement.parentElement)
+	// 	this.innerHTML = " ✔ "
+	// }else if(this.innerHTML == " ✔ "){
+	// 	editagin.call(this)
+	// }
+	// }
+	// var editagin = function(){
+ //        var tr = this.parentElement.parentElement;
+ //        // tr.innerHTML = '<td data-role="id"> '+_d.id+' </td><td data-role="name"> '+_d.name+' </td><td data-role="sex"> '+_d.sex+' </td><td data-role="age"> '+_d.age+' </td><td data-role="from"> '+_d.from+' </td><td><span class="edit" data-id="'+_d.id+'"> ✐ </span><span class="delete" data-id="'+_d.id+'"> ✖ </span></td>'
+ //        var tds = tr.querySelectorAll('td[data-role]')
+ //        for( var i in tds ){
+ //            var td,temp;
+ //            td = tds[i]
+ //            temp = td.innerHTML;
+ //        	td.innerHTML = '+temp+'
+ //        }
+	// }
+</script>
+</html>

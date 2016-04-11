@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+		width: 90%;
+		padding: 50px 30px;
+		border: 1px solid #C1ADAD;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+		text-align: center;
+		margin-top: 50px;
+	}
+	.box h1{
+		color: #010010;
+		font-family:"Arial","Times New Roman";
+	}
+	.box table{
+		width: 100%;
+		
+		border-spacing: 0;
+	}
+	.box table td{
+		border-bottom: 1px solid #B1A8A8;
+	}
+	.box thead th{
+		color: #403A3A;
+		font-family:"Times New Roman";
+		width: 15%;
+		border-bottom: 1px solid black;
+
+	}
+	.box thead tr{
+		height: 50px;
+	}
+	.tbody tr{
+		height: 20px;
+		/*cursor: pointer;*/
+	}
+	.tbody td{
+		height: 40px;
+	}
+	.tbody{
+		width: 95%;
+	}
+	.add{
+		padding: 10px 150px;
+		background: #FF8300;
+		color: white;
+		margin-top: 20px;
+	}
+	
+	.delete{
+		cursor: pointer;
+		margin:10px 0;
+		color: red;		
+		
+	}
+	.oprate{
+		margin:10px 0; 
+		float: right;
+		cursor: pointer;
+	}
+	.tbody input{
+ 		width: 80%;
+	}
+	.studentid{
+		cursor: pointer;
+	}
+	.age{
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="tip"></div>
+		<h1>Students Online Management System</h1>
+		<table>
+			<thead>
+				<tr>
+					<th class="studentid"> Student ID </th>
+					<th> Name </th>
+					<th> Sex </th>
+					<th class="age"> Age </th>
+					<th> From </th>
+					<th> Operate </th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+				
+			</tbody>
+		</table>
+		<div class="oprate">check all<input type="checkbox" value="" name="checkall" class="checkboxall"></div>
+		<div class="delete">✖ Delete check</div>
+		<div class="add">ADD···</div>
+	</div>
+</body>
+<script>
+	var box = document.querySelector('.box')
+	var tbody = document.querySelector('.tbody')
+	var add = document.querySelector('.add')
+	var checkall = document.getElementsByClassName('oprate')
+	var checkbox = document.getElementsByName('checkall')[0]
+	var studentid = document.querySelector('.studentid')
+	var age = document.querySelector('.age')
+	
+	var flag = true;
+	if(localStorage.students){
+		var students = JSON.parse(localStorage.students)
+	}else{
+		var students = [
+			{id:10010,name:'Bob',sex:'boy',age:33,from:'American'},
+			{id:10011,name:'Alice',sex:'gril',age:24,from:'China'},
+			{id:10012,name:'Carol',sex:'boy',age:22,from:'France'},
+			{id:10013,name:'Stef',sex:'gril',age:30,from:'China'},
+		]
+		localStorage.setItem('students',JSON.stringify(students));
+	}
+
+	var render = function(){
+		for( var i in students){
+		var tr = document.createElement('tr')
+		var _d = students[i]
+		tr.setAttribute('data-id',_d.id)
+		tr.setAttribute('data-age',_d.age)
+		tr.classList.add('tr')
+		tr.innerHTML = '<td data-role="id">'+_d.id+'</td><td data-role="name">'+_d.name+'</td><td data-role="sex">'+_d.sex+'</td><td data-role="age">'+_d.age+'</td><td data-role="from">'+_d.from+'</td><td class="checkbox"><input type="checkbox"></td>'
+		tbody.appendChild(tr)
+		}
+	}
+	render()
+	box.onclick = function(e){
+		var el=e.target
+		if(el.classList.contains('oprate')){
+			checkall.call(el,e)
+		}else if(el.classList.contains('checkboxall')){
+			checkall.call(el.parentElement,e)
+		}else if(el.classList.contains('delete')){
+			deleteHander.call(el,e)
+		}else if(el.classList.contains('add')){
+			add.call(el,e)
+		}else if(el.classList.contains('studentid')){
+			studentid.call(el,e)
+		}else if(el.classList.contains('age')){
+			age.call(el,e)
+		}
+	}
+	var checkall = function(){
+		 	var checkend = this.querySelector('input')
+		 	var inputs = tbody.querySelectorAll('.checkbox input')
+
+			if(this.classList.contains('checking')){
+				for(var i in inputs){
+					inputs[i].checked=false
+				}
+				checkend.checked=false
+				this.classList.remove('checking')
+			}else{
+
+				checkend.checked=true
+				this.classList.add('checking')
+				for(var i in inputs){
+					inputs[i].checked=true
+				}
+			}
+	}
+	var deleteHander = function(){
+		var inputs = tbody.querySelectorAll('.checkbox input')
+		console.log(inputs)
+		var aa = []
+		for(var i=0;i<inputs.length;i++){
+			if(inputs[i].checked===true){
+				aa.push(inputs[i].parentElement.parentElement.getAttribute('data-id'))
+				tbody.removeChild(inputs[i].parentElement.parentElement)
+			}
+		}
+		for(var j=0;j<aa.length;j++){
+			deleteoperate( Number(aa[j]) )
+
+
+		}
+		
+	}
+	var deleteoperate = function(id){
+		var s = []
+		for(var i in students){
+			var _d=students[i]
+
+			if(_d.id!==id){
+		       s.push(_d)
+			}
+		}
+		 students=s;
+		localStorage.setItem('students',JSON.stringify(students))
+	}
+	var add = function(){
+		var xuehao;
+		if( students.length){
+			xuehao = Number(students[students.length-1].id + 1)
+		}else{
+			xuehao = 10010;
+		}
+		var _d = {id:xuehao,name:'',sex:'',age:'',from:''}		
+		var tr = document.createElement('tr')
+		tr.setAttribute('data-id',_d.id)
+		tr.setAttribute('data-age',_d.age)
+		tr.innerHTML='<td data-role="id">'+_d.id+'</td><td data-role="name">'+_d.name+'</td><td data-role="sex">'+_d.sex+'</td><td data-role="age">'+_d.age+'</td><td data-role="from">'+_d.from+'</td><td class="checkbox"><input type="checkbox"></td>'
+		
+		tbody.appendChild(tr)
+		students.push(_d)
+		toggleEdit(tr)
+		// console.table(students)
+		localStorage.setItem('students',JSON.stringify(students))
+		
+	}
+	var studentid = function(){
+		var trs = tbody.querySelectorAll('tr')
+		var s = []
+		var a = []
+		for(var i=0,tr;i<trs.length;i++){
+			tr = trs[i]
+			var id = tr.getAttribute('data-id')
+			s.push(id)
+		}
+		if(this.classList.contains('change')){
+			this.classList.remove('change')
+			s.sort(function(x,y){
+			return x>y;
+			})
+			for(var j=0;j<s.length;j++){
+				var ss = Number(s[j])
+				for(var k=0;k<students.length;k++){
+					if(ss===students[k].id){
+						a.push(students[k])
+					}
+				}
+			}
+			students=a
+			// localStorage.setItem('students',JSON.stringify(students))
+			var trs = tbody.querySelectorAll('tr')
+			tbody.innerHTML=''
+			render()
+		}else{
+			this.classList.add('change')
+			s.sort(function(x,y){
+			return x<y;
+			})
+			for(var j=0;j<s.length;j++){
+				var ss = Number(s[j])
+				for(var k=0;k<students.length;k++){
+					if(ss===students[k].id){
+						a.push(students[k])
+					}
+				}
+			}
+			students=a
+			// localStorage.setItem('students',JSON.stringify(students))
+			var trs = tbody.querySelectorAll('tr')
+			tbody.innerHTML=''
+			render()
+		}
+		
+		
+	}
+	var age = function(){
+		var trs = tbody.querySelectorAll('tr')
+		var s = []
+		var a = []
+		for(var i=0,tr;i<trs.length;i++){
+			tr = trs[i]
+			var id = tr.getAttribute('data-age')
+			s.push(id)
+
+		}
+		if(this.classList.contains('change')){
+			this.classList.remove('change')
+			s.sort(function(x,y){
+			return x>y;
+			})
+			for(var j=0;j<s.length;j++){
+				var ss = Number(s[j])
+				for(var k=0;k<students.length;k++){
+					if(ss==students[k].age){
+						a.push(students[k])
+					}
+				}
+			}
+			students=a
+			var trs = tbody.querySelectorAll('tr')
+			tbody.innerHTML=''
+			render()
+		}else{
+			this.classList.add('change')
+			s.sort(function(x,y){
+			return x<y;
+			})
+			for(var j=0;j<s.length;j++){
+				var ss = Number(s[j])
+				for(var k=0;k<students.length;k++){
+					if(ss==students[k].age){
+						a.push(students[k])
+					}
+				}
+				console.log(ss)
+			}
+			students=a
+			var trs = tbody.querySelectorAll('tr')
+			// console.table(a)
+			tbody.innerHTML=''
+			render()
+		}
+		
+		
+	}
+	console.table(students)
+	tbody.onclick = function(e){
+		var el = e.target;
+		if( el.hasAttribute('data-role') ){
+
+			Edit.call(el,e)
+		 }
+		//else if(el!=input){
+		// 	var tr = tbody.getElementsByClassName('editing')[0]
+		// 	toggleEditlast(tr)
+		// 	// console.log(1)
+		// }
+	
+
+	}
+
+	var Edit = function(e){
+		var xuehao = this.parentElement.getAttribute('data-id')
+		// console.log(xuehao)
+		var tds = this.parentElement.getElementsByTagName('td')
+		// console.log(tds)
+		var tr = this.parentElement
+		toggleEdit(tr)
+		
+	}
+	var toggleEditlast = function(tr){
+		var tds = tr.getElementsByTagName('td')
+
+		if(tr.classList.contains('editing')){
+			for(var i=1,el,temp;i<tds.length-1;i++){
+			el = tds[i]
+			temp = tr.querySelector('input').value
+			el.innerHTML = temp
+			}
+			tr.classList.remove('editing')
+		
+	}
+	}
+	var toggleEdit = function(tr){
+
+		var tds = tr.getElementsByTagName('td')
+		var trr = tbody.getElementsByClassName('editing')
+		if(tr.classList.contains('editing')){
+			toggleEditlast(tr)
+		}else{
+			for(var i=1,el,temp;i<tds.length-1;i++){
+			el = tds[i]
+			temp = el.innerHTML
+			el.innerHTML = '<input type="text" value="'+temp+'">'
+			}
+		tr.classList.add('editing')
+		if(trr.length==2){
+			
+			for(var i=0;i<trr.length;i++){
+				
+				if(trr[i]!=tr){
+					var xuehao = Number(trr[i].getAttribute('data-id'))
+					// console.log(xuehao)
+					for(var j=0;j<students.length;j++){
+
+						if(students[j].id==xuehao){
+							var _d = students[i]
+							trr[i].innerHTML='<td data-role="id">'+_d.id+'</td><td data-role="name">'+_d.name+'</td><td data-role="sex">'+_d.sex+'</td><td data-role="age">'+_d.age+'</td><td data-role="from">'+_d.from+'</td><td class="checkbox"><input type="checkbox"></td>'
+						}
+					}
+				trr[i].classList.remove('editing')
+				}
+				
+			}
+		}
+		}
+	}
+		
+	tbody.onkeyup = function(e){
+		
+		var el = e.target
+		var tr = el.parentElement.parentElement
+		var id = Number ( tr.getAttribute('data-id') )
+		var key = el.parentElement.getAttribute('data-role')
+		var value = el.value
+		console.log(id,key,value)
+		updateStudent(id,key,value)		
+	}
+	var updateStudent = function(id,key,value){
+		for(var i=0;i<students.length;i++){
+			if(students[i].id===id){
+				students[i][key]=value
+			}			
+		}
+	localStorage.setItem('students',JSON.stringify(students));
+	}
+
+	
+	// checkall.onclick = function(){
+	// 	alert(1)
+	// 	// var checkend = this.querySelector('input')
+	// 	// console.log(checkend)
+	// 	// checkend.checked=true
+	// }
+</script>
+</html>
