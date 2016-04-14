@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.yi{
+		margin: 0 auto;
+		width: 500px;
+		height: 500px;
+		border:1px solid black;
+		text-align: center;
+		line-height: 500px;
+	}
+	.er{
+		width: 300px;
+		height: 300px;
+		border:1px solid black;
+		text-align: center;
+		line-height: 300px;
+		margin: auto;
+	}
+	.san{
+		width: 100px;
+		height: 100px;
+		border:1px solid black;
+		margin: auto;
+	}
+</style>
+<body>
+	<div class="yi">
+		<div class="er">
+			<div class="san"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var yi = document.querySelector('.yi')
+	var er = document.querySelector('.er')
+	var san = document.querySelector('.san')
+	// var threeclick = new Event('threeclick')
+	// yi.addEventListener('threeclick',function(){
+	// 	console.log('san is click')
+	// })
+	// yi.addEventListener('click',(function(){
+	// 	var cishu = 0;
+	// 	return function(){
+	// 		cishu += 1;
+	// 		if(cishu === 3){
+	// 			yi.dispatchEvent(threeclick)
+	// 		}
+	// 		setTimeout(function(){
+	// 			cishu=0
+	// 		},500)
+	// 	}
+	// })())
+ // yi.addEventListener('click',function(e){
+ //    console.log( 'yi' )
+ //  },true)
+ //  er.addEventListener('click',function(e){
+ //    console.log( 'er' )
+ //  },true)
+ //  san.addEventListener('click',function(e){
+ //    console.log( 'san' )
+ //  },true)
+
+// yi.addEventListener('mousedown',function(e){
+// 	setTimeout(function(){
+// 	console.log( 'yi' )
+// 	},5000)    
+//   })
+
+// var five = new Event('five')
+// yi.addEventListener = ('five',function(){
+// 	console.log('five is end')
+// })
+// yi.addEventListener = ('mousedown',function(){
+// 	setTimeout(function(){
+// 		yi.dispatchEvent(five)
+// 	},2000)
+// })
+
+
+// var five = new Event('five')
+// yi.addEventListener('five',function(){
+// 	console.log('five')
+// })
+// yi.addEventListener('mousedown',(function(){
+// 	var cishu = 0;
+// 	return function(){
+// 		setInterval(function(){
+// 		cishu+=1
+// 	    },1000)
+// 	    if(cishu===3){
+// 	    	yi.dispatchEvent(five)
+// 	    }
+// 	}
+	
+// })())
+
+
+// yi.addEventListener('mousedown',function(e){
+// 	 setInterval()
+// 	setTimeout(function(){
+// 	console.log( 'yi' )
+// 	},5000)    
+//   })
+
+
+// var five = new Event('five')
+// yi.addEventListener('five',function(){
+// 	console.log('five')
+// })
+// var timerId
+// yi.addEventListener('mousedown',function(){
+// 	var cishu=0;
+// 	timerId=setInterval(function(){
+// 		cishu+=1;
+// 		if(cishu===3){
+// 			yi.dispatchEvent(five)
+// 		}
+// 	},1000)
+// })
+// document.addEventListener('mouseup',function(){
+// 	clearInterval(timerId)
+// })
+
+// var onlongpress = function(el,fn){
+// 	var longpress = new Event('longpress')
+// 	el.addEventListener('longpress',function(e){
+	//不要给自定义事件调用e.stopPropagtion()
+// 		fn.call(el,e)
+// 	})
+// 	var timerId
+// 	el.addEventListener( 'mousedown',function(){
+// 		var i = 0;
+// 		timerId = setInterval( function(){
+// 			i += 1;
+// 			if( i===3 ){
+// 				el.dispatchEvent( longpress )
+// 			}
+// 		},1000 )
+// 	} )
+// 	el.addEventListener('mouseup',function(){
+// 		clearInterval(timerId)
+// 	})
+// }
+// onlongpress(san,function(e){
+// alert(3)
+// })
+// onlongpress(er,function(){
+// alert(2)
+// })
+// onlongpress(yi,function(){
+// alert(1)
+// })
+
+
+
+// var onthreeclick = function( el,fn ){
+// 	var threeclick = new Event( 'threeclick' )
+// 	el.addEventListener( 'threeclick',function(e){
+// 		fn.call(this,e)
+// 	} )
+// 	el.addEventListener( 'click',(function(){
+// 		var i = 0;
+// 		return function(){
+// 			i += 1;
+// 			if( i===3 ){
+// 				el.dispatchEvent(threeclick)
+// 				i = 0;
+// 			}
+// 			setTimeout(function(){
+// 				i = 0
+// 			},500)
+// 		console.log(i)
+// 		}
+// 	})() )
+// }
+// onthreeclick( san,function(){
+// 	alert(1)
+// } )
+// Array.prototype.myforEach = function( fn ){
+// 	for(var i = 0; i<this.length ;i++ ){
+// 		fn(this[i])
+// 	}
+// }
+// var arr = [1,2,3,4,5]
+// arr.myforEach(function(v){
+// 	console.log(v)
+// })
+Array.prototype.myforEach = function( fn ){
+	for(var i = 0; i<this.length ;i++ ){
+		fn.call(this,this[i])
+	}
+}
+var arr = [1,2,3,4,5]
+arr.myforEach(function(v){
+	console.log(this,v)
+})
+</script>
+</html>

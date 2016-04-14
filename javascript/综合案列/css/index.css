@@ -1,0 +1,27 @@
+@import url(public.css);
+.content{
+	width: 1000px;
+	margin: 0 auto;
+	
+}
+.box{
+	border:1px solid black;
+	padding: 40px;
+	margin-top: 40px;
+	text-align: center;
+}
+.box .table{
+	border-spacing: 0;
+	width: 100%;
+	
+}
+.box #title{
+	margin-bottom: 20px;
+}
+.box .table th,.box .table td{
+	border-bottom:1px solid black;
+	width: 20%;
+}
+.botton{
+
+}

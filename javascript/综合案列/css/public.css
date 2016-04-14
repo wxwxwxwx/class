@@ -1,0 +1,15 @@
+body{
+	font: normal 16px/1.5 Verdana,simsun,Sans-Serif;
+	font-family: '微软雅黑';
+}
+body,a,h1,h2,h3,h4,h5,h6,ul,li,ol,dd,dt,dl,p,input{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+input{
+	outline: none;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+  <style media="screen">
+    #yi{
+      width:500px;
+      height:500px;
+      border:1px solid black;
+    }
+    #er{
+      width:300px;
+      height:300px;
+      border:1px solid black;
+    }
+    #san{
+      width:100px;
+      height:100px;
+      border:1px solid black;
+    }
+  </style>
+  <body>
+    <div id="yi">
+      <div id="er">
+        <div id="san">
+
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+  var yi = document.getElementById('yi')
+  var er = document.getElementById('er')
+  var san = document.getElementById('san')
+  // yi.addEventListener('click',function(e){
+  //   console.log('yi')
+  // },true)
+  // yi.addEventListener('click',function(e){
+  //   console.log('yi again')
+  // },true)
+  // er.addEventListener('click',function(e){
+  //   console.log('er')
+  // },true)
+  // san.addEventListener('click',function(e){
+  //   console.log('san')
+  // },true)
+
+//   var clickHandler = function(){
+//     this.style.background = 'red'
+//     this.removeEventListener('click',clickHandler)
+//   }
+// yi.addEventListener('click',clickHandler)
+var threeclick = new Event('threeclick')
+yi.addEventListener = ('threeclick',function(){
+  console.log('三点事件被触发')
+})
+yi.addEventListener =('click',(function(){
+  var cishu = 0;
+  return function(){
+    cishu +=1;
+    if(cishu===3){
+      yi.dispatchEvent(threeclick)
+    }
+  }
+})())
+
+
+
+
+  </script>
+</html>

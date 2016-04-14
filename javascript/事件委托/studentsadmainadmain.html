@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+
+		width: 90%;
+		border: 1px solid black;
+        padding: 30px;
+        position: relative;
+        margin:30px auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+	}
+	.box table{
+		width: 100%;
+		border-spacing: 0;
+	}
+	.box th,.box td{
+		width: 15%;
+		height: 50px;
+		border-bottom: 1px solid black;
+	}
+	.add{
+		padding: 10px 150px;
+		background: #FB701C;
+		margin-top: 40px;
+		color: white;
+		 cursor: pointer;
+	}
+	.delete,.edit,.sure{
+        color: black;
+        font-size: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+	}
+	.tbody input{
+		width: 80%;
+	}
+	th{
+		font-size: 20px;
+		color: #908A86;
+	}
+	.remove{
+		color: red;
+		float:right;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div class="box">
+		<dic class="tip"></dic>
+		<h1>Students online management system</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th data-role="id" flag="true"> Student ID </th>
+					<th data-role="name" flag="true"> Name </th>
+					<th data-role="sex" flag="true"> Sex </th>
+					<th data-role="age" flag="true"> Age </th>
+					<th data-role="from" flag="true"> From </th>
+					<th>Check All <input type="checkbox" class="checkbox"> </th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+				
+			</tbody>
+		</table>
+		<div class="remove">✖ Delete Check</div>
+		<div class="add">ADD···</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var tbody = document.querySelector('.tbody')
+	var tip = document.querySelector('.tip')
+	var remove = document.querySelector('.remove')
+	var checkbox = document.querySelector('.checkbox')
+	var thead = document.querySelector('.table thead')
+	// console.log(thead)
+	if(localStorage.students){
+        var students = JSON.parse(localStorage.students)
+	}else{
+		var students = [
+		{id:10011,name:'Bob',sex:'boy',age:23,from:'Shanxi'},
+		{id:10012,name:'Alice',sex:'girl',age:'24',from:'Beijin'},
+		{id:10013,name:'Jnif',sex:'boy',age:'27',from:'Xizang'},
+		{id:10014,name:'Laola',sex:'tirl',age:'24',from:'Anhui'}
+		];
+		localStorage.setItem('students',JSON.stringify(students));
+	}
+	var =[],
+	forEach = arr.forEach
+	filter = arr.filter
+	// console.dir(students)
+	// var render = function(){
+	// 	tbody.innerHTML=''
+	// 	for ( var i in students ){
+	// 	var _d = students[i]
+	// 	var newmassage = document.createElement('tr')
+	// 	newmassage.innerHTML = '<td > '+_d.id+' </td><td data-role="name"> '+_d.name+' </td><td data-role="sex"> '+_d.sex+' </td><td data-role="age"> '+_d.age+' </td><td data-role="from"> '+_d.from+' </td><td><input type="checkbox" class="ck" value="'+_d.id+'"/></td>'
+	// 	newmassage.setAttribute('data-id',_d.id)
+	// 	tbody.appendChild(newmassage)
+	// }
+	// }
+	// render();
+	var renderr = function(){
+		tbody.innerHTML=''
+		students.forEach(function(_d){
+			var newmassage = document.createElement('tr')
+			newmassage.innerHTML = '<td > '+_d.id+' </td><td data-role="name"> '+_d.name+' </td><td data-role="sex"> '+_d.sex+' </td><td data-role="age"> '+_d.age+' </td><td data-role="from"> '+_d.from+' </td><td><input type="checkbox" class="ck" value="'+_d.id+'"/></td>'
+			newmassage.setAttribute('data-id',_d.id)
+			tbody.appendChild(newmassage)
+		})
+	}
+	renderr()
+	// tbody.onclick = function(e){
+	// 	var el = e.target
+	// 	if( el.nodeName=='TD' ){
+	// 		if(tbody.querySelector('.editing')){
+	// 			toggleEdit(tbody.querySelector('.editing'))
+	// 		}
+	// 		toggleEdit(el.parentElement)
+			
+	// 	}else if(el.classList.contains('ck')){
+	// 		toggleCheck.call(el,e)
+	// 	}
+	// }
+	tbody.addEventListener('click',function(e){
+		var el = e.target
+		if( el.nodeName=='TD' ){
+			if(tbody.querySelector('.editing')){
+				toggleEdit(tbody.querySelector('.editing'))
+			}
+			toggleEdit(el.parentElement)
+			
+		}else if(el.classList.contains('ck')){
+			toggleCheck.call(el,e)
+		}
+	})
+	var timerId
+	// tbody.onkeyup = function(e){
+		
+	// 	var el = e.target
+	// 	var tr = el.parentElement.parentElement
+	// 	var id = Number ( tr.getAttribute('data-id') )
+	// 	var key = el.parentElement.getAttribute('data-role')
+	// 	var value = el.value
+	// 	console.log(id,key,value)
+	// 	tip.innerHTML='saveing···'
+ //        clearTimeout(timerId)
+ //        timerId = setTimeout(function(){
+ //        	updateStudent(id,key,value)
+        	
+ //        },200)				
+	// }
+	tbody.addEventListener('keyup',function(e){
+
+		
+		var el = e.target
+		var tr = el.parentElement.parentElement
+		var id = Number ( tr.getAttribute('data-id') )
+		var key = el.parentElement.getAttribute('data-role')
+		var value = el.value
+		// console.log(id,key,value)
+		tip.innerHTML='saveing···'
+        clearTimeout(timerId)
+        timerId = setTimeout(function(){
+        	updateStudent(id,key,value)
+        	
+        },200)				
+	
+	})
+// 	var updateStudent = function(id,key,value){
+// 		for(var i=0;i<students.length;i++){
+// 			if(students[i].id===id){
+// 				students[i][key]=value
+// 			}		
+// 			console.log(1)	
+// 		}
+// 		tip.innerHTML='success!'
+// 		localStorage.setItem('students',JSON.stringify(students));
+// 	}
+// 	Array.prototype.forEach = function( fn ){
+// 	for(var i = 0; i<this.length ;i++ ){
+// 		fn.call(this,this[i])
+// 	}
+// }
+var updateStudent = function(id,key,value){
+		// for(var i=0;i<students.length;i++){
+		// 	if(students[i].id===id){
+		// 		students[i][key]=value
+		// 	}		
+		// 	console.log(1)	
+		// }
+		forEach.call(function(v){
+			if(students[i].id===id){
+				students[i][key]=value
+			}		
+		})
+		tip.innerHTML='success!'
+		localStorage.setItem('students',JSON.stringify(students));
+	}
+
+	
+	// var deleteoperate = function(id){
+	// 	var s = []
+	// 	for(var i in students){
+	// 		var _d=students[i]
+
+	// 		if(_d.id!==id){
+	// 	       s.push(_d)
+	// 		}
+	// 	}
+	// 	 students=s;
+	// 	localStorage.setItem('students',JSON.stringify(students))
+	// }
+	var deleteoperate = function(id){
+		var s = []
+		students = students.filter(function(v){
+			return v.id!==id
+		})
+		localStorage.setItem('students',JSON.stringify(students))
+	}
+	var deleteHander = function(e){
+		tbody.removeChild(this.parentElement.parentElement)
+		var id = parseInt( this.getAttribute('data-id') )
+
+	    // console.log(id)
+		deleteoperate(id)
+	}
+	add.addEventListener('click',function(){
+		var xuehao;
+		if( students.length){
+			xuehao = Number(students[students.length-1].id + 1)
+		}else{
+			xuehao = 10011;
+		}
+		var _d = {id:xuehao,name:'',sex:'',age:'',from:''}		
+		var tr = document.createElement('tr')
+		tr.setAttribute('data-id',_d.id)
+		tr.innerHTML='<td > '+_d.id+' </td><td data-role="name"> '+_d.name+' </td><td data-role="sex"> '+_d.sex+' </td><td data-role="age"> '+_d.age+' </td><td data-role="from"> '+_d.from+' </td><td><input type="checkbox" class="ck" value="'+_d.id+'"/></td>'
+		
+		tbody.appendChild(tr)
+		students.push(_d)
+		
+		// console.table(students)
+		localStorage.setItem('students',JSON.stringify(students))
+		toggleEdit(tr)
+		tip.innerHTML = ''
+	})
+	var add = document.getElementsByClassName('add')[0]
+	// add.onclick = function(){
+	// 	var xuehao;
+	// 	if( students.length){
+	// 		xuehao = Number(students[students.length-1].id + 1)
+	// 	}else{
+	// 		xuehao = 10011;
+	// 	}
+	// 	var _d = {id:xuehao,name:'',sex:'',age:'',from:''}		
+	// 	var tr = document.createElement('tr')
+	// 	tr.setAttribute('data-id',_d.id)
+	// 	tr.innerHTML='<td > '+_d.id+' </td><td data-role="name"> '+_d.name+' </td><td data-role="sex"> '+_d.sex+' </td><td data-role="age"> '+_d.age+' </td><td data-role="from"> '+_d.from+' </td><td><input type="checkbox" class="ck" value="'+_d.id+'"/></td>'
+		
+	// 	tbody.appendChild(tr)
+	// 	students.push(_d)
+		
+	// 	// console.table(students)
+	// 	localStorage.setItem('students',JSON.stringify(students))
+	// 	toggleEdit(tr)
+	// 	tip.innerHTML = ''
+	// }
+	remove.addEventListener('click',function(v){
+		var els = tbody.querySelectorAll('.ck')
+		forEach.call(els,function(v){
+			if(v.checked){
+				tbody.removeChild(el.parentElement.parentElement)
+				deleteoperate( Number(el.value) )
+			}
+		})
+	})
+	// remove.onclick = function(){
+	// 	var els = tbody.querySelectorAll('.ck')
+	// 	for( var i=0,el; i<els.length; i++){
+	// 		el = els[i]
+	// 		if(el.checked){
+	// 			tbody.removeChild(el.parentElement.parentElement)
+	// 			deleteoperate( Number(el.value) )
+	// 		}
+	// 	}
+	// }
+	// var toggleCheck = function(){
+	// 	var els = tbody.querySelectorAll('.ck')
+	// 	for(var i=0,el,j=0; i<els.length; i++){
+	// 		el = els[i]
+	// 		if(el.checked){
+	// 			j+=1;
+	// 		}
+	// 	}
+	// 	if(els.length===j){
+	// 		checkbox.checked = true;
+	// 	}else{
+	// 		checkbox.checked = false;
+	// 	}
+	// }
+	var toggleCheck = function(){
+		var j = 0
+		var els = tbody.querySelectorAll('.ck')
+		forEach.call(els,function(v){
+			if(v.checked){
+				j += 1;
+			}
+		})
+		if(els.length===j){
+			checkbox.checked = true;
+		}else{
+			checkbox.checked = false;
+		}
+	}
+	checkbox.addEventListener('click',function(v){
+		ar els = tbody.querySelectorAll('.ck')
+		forEach.call(els,function(v){
+			
+				v.checked = this.checked
+			
+		})
+	})
+	// checkbox.onclick = function(){
+	// 	var els = tbody.querySelectorAll('.ck')
+	// 	for(var i=0,el; i<els.length; i++){
+	// 		el = els[i]
+	// 		if(this.checked){
+	// 			el.checked = this.checked
+	// 		}else{
+	// 			el.checked = this.checked
+	// 		}
+	// 	}
+	// }
+	// var toggleEdit = function(tr){
+	// 	var tds = tr.querySelectorAll('td[data-role]')
+	// 	var aa = tr.querySelector('.edit')
+	// 	if(tr.classList.contains('editing')){
+	// 		for( var i = 0,el,temp;i<tds.length;i++){
+	// 	        	el = tds[i].querySelector('input')
+	// 	        	temp = el.value;
+	// 	        	// console.log(temp)
+	// 	        	tds[i].innerHTML = temp;
+	// 	        	// console.log(el,tds[i],temp)
+	// 	        }
+	// 	        tip.innerHTML = ''
+	// 		tr.classList.remove('editing')
+ //        }else{
+ //        	// td[1].querySelector('input').value       	
+	//         for( var i in tds ){
+ //            var td,temp;
+ //            td = tds[i]
+ //            temp = td.innerHTML;
+ //        	td.innerHTML = '<input type="text" value="'+temp+'">'
+ //        }tr.classList.add('editing')
+
+ //        }
+ //        // console.table(students)	    
+
+	// }
+	var toggleEdit = function(tr){
+		var tds = tr.querySelectorAll('td[data-role]')
+		var aa = tr.querySelector('.edit')
+		if(tr.classList.contains('editing')){
+			forEach.call(tds,function(v){
+				el = v.querySelector('input')
+				var temp
+		        	temp = el.value;
+		        	v.innerHTML = temp;
+			})
+		        tip.innerHTML = ''
+			tr.classList.remove('editing')
+        }else{   
+	        forEach.call(tds,function(v){
+	        	var temp;
+	            
+	            temp = v.innerHTML;
+	        	v.innerHTML = '<input type="text" value="'+temp+'">'
+        })   	
+	        tr.classList.add('editing')
+
+        }    
+
+	}
+thead.addEventListener('click',function(e){
+	var el = e.target
+		
+		if( el.tagName==='TH'){
+		var sortkey = el.getAttribute('data-role')
+		var state = (el.getAttribute('flag')==='true')?true:false
+		el.setAttribute("flag",!state)
+
+		students = students.sort( function(x,y)
+			{   
+				return state? (x[sortkey] < y[sortkey]):(x[sortkey] > y[sortkey])
+			} )
+		renderr()
+		}
+		
+})
+	// thead.onclick = function(e){
+	// 	var el = e.target
+		
+	// 	if( el.tagName==='TH'){
+	// 	var sortkey = el.getAttribute('data-role')
+	// 	var state = (el.getAttribute('flag')==='true')?true:false
+	// 	el.setAttribute("flag",!state)
+
+	// 	students = students.sort( function(x,y)
+	// 		{   
+	// 			return state? (x[sortkey] < y[sortkey]):(x[sortkey] > y[sortkey])
+	// 		} )
+	// 	render()
+	// 	}
+		
+	// }
+</script>
+</html>
