@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./jquery工程文件/jquery-1.12.0.js"></script>
+	<script type="text/javascript">
+	var obj = {
+		width:100,
+		height:200,
+		addW:function(){
+			this.width += 10;
+			return this
+		},
+		addH:function(){
+			this.height += 10;
+			return this
+		}
+	}
+	obj.addW().addW().addH().addH()
+	console.log(obj.width,obj.height)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

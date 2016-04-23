@@ -1,0 +1,166 @@
+body{
+	font-family: Arial;
+	font-size: 16px;
+}
+body,h1,h2,h3,h4,h5,h6,p,pre,dd,dt,dl,ul,li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.top{
+	height: 45px;
+	background: #03A6F7;
+	position: fixed;
+	line-height: 45px;
+	top: 0;
+	right: 0;
+	left: 0;
+	/*position: relative;*/
+}
+.top div{
+	/*padding: 10px;*/
+	/*position: absolute;*/
+	display: inline-block;
+	width: 50px;
+}
+.top .left{
+	float: left;
+}
+.top .right{
+	width: 100px;
+	float: right;
+}
+.top div span{
+	padding:14px 16px;
+}
+.body{
+	position: fixed;
+	top: 45px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*background: red;*/
+}
+.body .cent{
+	overflow: auto;
+}
+.body .cent dl{
+	padding: 0 30px 0 10px;
+}
+.body .cent dt{
+	background: #ccc;
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 10px;
+	position: relative;
+	left: -8px;
+	margin-top: -1px;
+}
+.body .cent dd{
+	height: 50px;
+	border-bottom:1px solid black;
+	padding: 5px 2px;
+}
+.body .cent dd h5{
+	font-size: 16px;
+	padding: 10px 5px;
+}
+.body .cent dd h6{
+	padding: 2px 5px;
+	color: #7D7979;
+	font-size: 12px;
+}
+.side{
+	position: fixed;
+	margin:auto;
+	height: 300px;
+	top: 45px;
+	right: 0;
+	width: 25px;
+	bottom: 0;
+	text-align: center;
+	color:#1D00FF;
+	font-weight: 500;
+}
+span{
+	font-weight: 700;
+}
+.hide{
+	position: fixed;
+	width: 320px;
+	height: 568px;
+	background: #7E8096;
+	padding: 15px;
+	
+}
+.card{
+	height: 300px;
+	padding: 30px;
+	background: white;
+	border-radius: 10%;
+	width:72%;
+	margin-top: 100px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.atro{
+	height: 100px;
+	width: 100%;
+}
+.toux{
+ width: 90px;
+ height: 90px;
+ border-radius:50%;
+ border: 1px solid #f4f4f4;
+ margin: auto;
+ left: 0;
+ right: 0;
+}
+.shuru{
+	height: 50px;
+	width: 100%;
+}
+.shuru input{
+	width: 100%;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid black;
+}
+.name{
+	margin-top: 10px;
+}
+.oprate{
+	height: 100px;
+	width: 100%;
+	text-align: center;
+
+}
+.oprate span{
+	display: inline-block;
+	padding: 3px 20px;
+	border-radius: 20%;
+	background: #5290B5;
+}
+.delete{
+	position: relative;
+	top: 100px;
+	text-align: center;
+	height: 100px;
+	width: 100%;
+}
+.deletes{
+		padding: 3px 20px;
+	border-radius: 20%;
+	background: #B55252;
+}
+
+
+
+
+

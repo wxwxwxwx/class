@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+body{
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+	.sence{
+		width: 600px;		
+		margin: auto;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		position: absolute;
+		background: #737A9C;
+		height: 600px;
+	}
+	.black{
+		width: 29px;
+		height: 29px;
+		background: #7BF74A;
+		float: left;
+		margin:0 1px 1px 0;
+
+	}
+	.snake{
+		background: #3F51B5;
+		border-radius: 10%;
+	}
+	.food{
+		background: #FF9800;
+	}
+	.right{
+		width: 300px;
+		height: 700px;
+		background: black;
+		margin: 0;
+	}
+</style>
+<body>
+<div class="right">
+	<div class="title"><h3>please chooes you box</h3></div>
+	<div data-num="10">10*10</div>
+	<div data-num="20">20*20</div>
+	<div data-num="30">30*30</div>
+	<input type="text" id="row">	
+</div>
+
+<!-- <div class="sence"></div> -->
+</body>
+<script src="./jquery工程文件/jquery-1.12.0.js"></script>
+<script >
+$(function(){
+	var sence = $('.sence');
+	var snake = [{x:0,y:0},{x:0,y:1},{x:0,y:2}];
+	var snakebody = {'0-0':true,'0-1':true,'0-2':true};
+	var food = {};
+	var dir = 40;
+	///////////////idto
+	var toid = function(x,y){
+		return(x+'-'+y)
+	}
+	///////////////show sence
+	function showsence(hang){
+		var 
+		i = 0,
+		j,
+		hang = hang||20,
+		wh = Math.floor(600/hang);
+		sence.empty()
+		for(;i<hang;i++){
+			for( j = 0;j < hang;j++ ){
+				$('<div>')
+				.addClass('black')
+				.attr('id',toid(i,j))
+				.appendTo(sence)
+				.width(wh-1)
+				.height(wh-1)
+			}
+		}	
+		sence.width(wh*hang).height(wh*hang)	
+	}
+	showsence()
+	///////////////input hang
+	$('#row').bind('keydown',function(e){
+		if(e.keyCode===13){
+			var hang = $('#row').val()
+			showsence(hang)
+			$('#row').val('')
+			showsnake()
+			showfood(hang)
+		}
+	})
+	
+	///////////////show snake
+	function showsnake(){
+		snake.forEach(function(v){
+			$('#'+v.x+'-'+v.y).addClass('snake')
+		})
+	}
+	var she = showsnake()
+	///////////////showfood
+	function showfood(hang){
+		hang = hang||20;
+		do{
+			var x = Math.floor( Math.random()*hang )
+			var y = Math.floor( Math.random()*hang )
+		}while(snakebody['x+'-'+y'])
+		$('#'+x+'-'+y).addClass('food')
+		food={x:x,y:y}
+	}
+	showfood()
+	///////////////eat food
+	function eatfood(){
+		$('.food').addClass('snake').removeClass('food')
+ 				snake.push(food)
+ 				showsnake()
+ 				showfood()
+	}
+	/////////////move
+
+	function move(){
+		var jiutou = snake[snake.length-1],
+		weiba,
+		xintou;
+		if(dir===40){
+			xintou = {x:jiutou.x+1,y:jiutou.y}
+		}else if(dir===39){
+			xintou = {x:jiutou.x,y:jiutou.y+1}
+		}else if(dir===38){
+			xintou = {x:jiutou.x-1,y:jiutou.y}
+		}else if(dir===37){
+			xintou = {x:jiutou.x,y:jiutou.y-1}
+		}
+		if(snakebody[xintou.x+'-'+xintou.y]||xintou.x>19||xintou.y>19||xintou.x<0||xintou.y<0){
+			alert('you are die')
+ 				clearInterval(timerId)
+ 			}else{
+ 				snake.push(xintou)
+ 				weiba = snake.shift()
+ 				$('div').removeClass('snake')
+ 				showsnake()
+ 				if(xintou.x===food.x&&xintou.y===food.y){
+ 				eatfood()
+ 			}
+ 			}
+ 		
+	}
+	////////control dir
+	$(document).bind('keydown',function(e){
+		if(e.keyCode>40||e.keyCode<37||Math.abs(e.keyCode-dir)===2){
+ 				return
+ 		}else if(e.keyCode===40||e.keyCode===39||e.keyCode===38||e.keyCode===37){
+ 			var num = e.keyCode;
+ 			dir = num;
+ 		}
+	})
+
+	////////move
+	var timerId = setInterval(function(){
+		move()
+	},200)
+})
+
+
+</script>
+</html>

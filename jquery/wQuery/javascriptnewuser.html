@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//javascript中构建一个对象的4种方式
+	// 1.字面量的形式
+	// var obj = {
+	// 	"a":12,
+	// 	"b":234,
+	// 	"我是中国人"：'aaa'
+	// }
+	//以字面量的形式创建出来的对象原型就是object.prototype
+	// 2.构造函数
+	// var obj2 = new Object()
+	// obj2.a = 12
+	// 3.利用Object.create()方法
+	// 从一个已有的对象开始构建新的对象
+	var mao = {
+		zhuzi:4,
+		erduo:1,
+		nao:function(){
+			console.log('nao nao nao')
+		}
+		// var bosimai = {
+		// 	zhuzi:4,
+		// 	erduo:1,
+		// 	nao:function(){
+		// 		console.log('nao nao nao')
+		// 	}
+
+		// 	dianjiaojian:function(){
+		// 		console.log('dian dian dian')
+		// 	}
+		// }
+	}
+	//要达到这种效果。首先波斯猫需要时一只猫
+	// 然后添加部分功能即可
+	var bosimao = Object.create(mao)
+	bosimao.dianjiaojian = function(){
+		console.log(1)
+	}
+	console.dir(bosimao)
+	// 4. 利用new关键字来构造对象
+	var mao = function(){
+		this.zhuzi = 4;
+		this.erduo = 1;
+	}
+	var bosimao = new mao()
+	// 1.构造一个空对象{}
+	// 2.把mao那个函数作为这个空对象的临时方法调用一次；
+	// 3.把mao那个函数身上的prototype那个属性拿来，作为自己原型链的一条
+	// 4.返回最终对象
+	//每一个函数对象身上,都有一个其他对象不具备的属性，叫做。prptotype
+	//mao.call({}).{}.zhuzi:4,{}.erduo:1
+
+
+</script>
+</html>

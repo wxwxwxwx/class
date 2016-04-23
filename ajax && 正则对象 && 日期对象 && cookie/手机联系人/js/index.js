@@ -154,14 +154,25 @@ reload.addEventListener('touchstart',function(){
 	$info.style.display = 'block'
 	names.innerHTML = '<input type="text" value="name" data-role="name"/>'
 	phones.innerHTML = '<input type="text" value="phone" data-role="phone"/>'
+	// names.classList.add('editing')
+	// phones.classList.add('editings')
 	var xuehao;
-		if( students.length){
-			xuehao = Number(students[students.length-1].id + 1)
+		if( contects.length){
+			var aa =(Number(contects[contects.length-1].id)) + 1;
+			xuehao = aa.toString()
 		}else{
 			xuehao = 10001;
 		}
-	
-
+		// console.log(xuehao)
+	var _d = {id:xuehao,name:'A',phone:''}		
+		var ddd = document.createElement('dd')
+		ddd.setAttribute('data-id',xuehao)
+		contects.push(_d)
+		ddd.classList.add('edit')
+		$content.appendChild(ddd)
+		// console.table(students)
+		localStorage.setItem('contects',JSON.stringify(contects))	
+		// render()
 })
 
 

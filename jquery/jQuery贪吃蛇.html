@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#sence{
+		width: 600px;
+		height: 600px;
+		border: 1px solid black;
+		margin:auto;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		position: absolute;
+	}
+	.block{
+		float: left;
+		background: red;
+		width: 30px;
+		height: 30px;
+	}
+	.she{
+		background: green;
+	}
+	.shiwu{
+		background: black;
+	}
+</style>
+<body>
+	<div id="sence">
+		
+	</div>
+</body>
+<script src="./jquery工程文件/jquery-1.12.0.js"></script>
+<script >
+	///////sence
+	$( function(){
+		var num = 20;
+		var sence = $('#sence')
+		
+		var she = [{x:0,y:0},{x:0,y:1},{x:0,y:2}]
+		var zidianshe = {'0-0':true,'0-1':true,'0-2':true}
+		var shi = {}
+		for( var i=0;i<num;i++ ){
+			for( var j=0;j<num;j++ ){
+			$('<div>').addClass('block').appendTo(sence).attr('id',i+'-'+j)
+			}
+		}
+		function huashe(){
+			she.forEach(function(v){
+				$('#'+v.x+'-'+v.y).addClass('she')
+			})
+		}
+		var showshe = huashe()
+		function shiwu(){		
+			do{
+				var x = Math.floor(Math.random()*20)
+			var y = Math.floor(Math.random()*20) 
+			}while(zidianshe['x+'-'+y'])
+
+			shi={x:x,y:y}
+		 	$('#'+shi.x+'-'+shi.y).addClass('shiwu')
+
+		}
+ 		var showshiwu = shiwu()
+ 		var dir = 40;
+ 		var move=function(){
+ 			var jiushe = she[she.length-1]
+ 			var xintou
+
+ 			if(dir === 39){				
+ 				 xintou = {x:jiushe.x,y:jiushe.y+1}
+ 					
+ 			}else if(dir === 40){
+ 				 xintou = {x:jiushe.x+1,y:jiushe.y}
+ 			}else if(dir === 37){
+				 xintou = {x:jiushe.x,y:jiushe.y-1}
+ 			}else if(dir === 38){
+ 				 xintou = {x:jiushe.x-1,y:jiushe.y}
+ 			}
+ 			if(zidianshe[xintou.x+'-'+xintou.y]){
+ 				clearInterval(timerId)
+ 			}
+
+ 			zidianshe[xintou.x+'-'+xintou.y]=true
+ 			she.push(xintou)
+ 				var wei = she.shift()
+ 				$('div').removeClass('she')
+ 				zidianshe[wei.x+'-'+wei.y]=null
+ 				huashe() 	
+ 			if(xintou.x===shi.x&&xintou.y===shi.y)	{
+ 				eatfood()
+ 			}
+ 			if(xintou.x>18||xintou.y>18||xintou.x<1||xintou.y<1){
+ 				clearInterval(timerId)
+ 			}
+ 			
+ 			console.log(zidianshe)		
+ 			
+ 		}
+ 		function eatfood(){		
+ 				$('.shiwu').addClass('she').removeClass('shiwu')
+ 				she.push(shi)
+ 				huashe()
+ 				shiwu()	
+		}
+ 		
+ 		$(document).bind('keydown',function(e){
+ 			if(e.keyCode>40||e.keyCode<37){
+ 				return
+ 			}
+ 			fangxiang=Number(e.keyCode)
+ 			if(Math.abs(e.keyCode-dir)===2){
+ 				return
+ 			}
+ 			if(e.keyCode)
+ 			if(e.keyCode===40){
+ 				dir = 40;
+ 			}else if(e.keyCode===37){
+ 				dir = 37;
+ 			}else if(e.keyCode===38){
+ 				dir = 38;
+ 			}else if(e.keyCode===39){
+ 				dir = 39;
+ 			}
+
+ 		})
+ 		var timerId = setInterval(function(){
+ 			move()
+ 		},200)
+	} )
+	</script>
+</html>

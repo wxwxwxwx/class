@@ -1,0 +1,2 @@
+$('.box').addClass('red')
+
