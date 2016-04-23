@@ -24,6 +24,12 @@
 		top: 0;
 		background: #ffffff;
 	}
+	.right{
+		width: 1049px;
+		height: 100%;
+		margin-left: 300px;
+		background:#E91E63;
+	}
 	.control{
 		width: 300px;
 		height: 100%;
@@ -48,9 +54,12 @@
 	.black{
 		width: 29px;
 		height: 29px;
-		background: #7BF74A;
+		background: #40903A;
 		float: left;
 		margin:0 1px 1px 0;
+	}
+	.aa{
+		background: #7BF74A;
 	}
 	.snake{
 		background: #3F51B5;
@@ -60,36 +69,78 @@
 		background: #FF9800;
 	}
 	.button{
-		width: 160px;
+		width: 50px;
 		height: 40px;
+		cursor: pointer;
 		border-radius: 10%;
 		background: #00CF9B;
-		margin:20px auto;
+		margin: 21px;
 		line-height: 40px;
+		float: left;
 	}
 	h3,h4{
 		color: white;
+	}
+	.war{
+		margin-top: 100px;
 	}
 	.btn{
 		background: yellow;
 		width: 150px;
 		height: 30px;
-		margin: 25px auto;
+		margin: 20px auto;
 		line-height: 30px;
 	}
-	.speed{
+	.speedbox{
 		text-align: center;
-	}
-	.speed div{
+	}	
+	.speed{
 		float: left;
 		width: 73px;
 		height: 25px;
-		background: purple;
+		background: #901292;
 		margin: 10px;
 		line-height: 25px;
+		color: white;
+	}
+	.speeds{
+		background: #DD67E4;
 	}
 	.checked{
 		background: blue;
+	}
+	.back{
+		width: 100%;
+		height: 100px;
+		/*background: red;*/
+		margin-top: 70px;
+		text-align: center;
+
+	}
+	.color{
+		width: 100px;
+		height: 30px;
+		background: #E91E63;
+		margin: 10px 23px;
+		display: inline-black;
+		float: left;
+		text-align: center;
+		line-height: 30px;
+	}
+	.summers{
+		background:#40903A;
+	}
+	.springs{
+		background:#8BC34A;
+	}
+	.autumns{
+		background: #807040;
+	}
+	.winters{
+		background: #03A9F4;
+	}
+	.jijie{
+		background: red;
 	}
 </style>
 <body>
@@ -103,21 +154,30 @@
 			<div class="war"><h4>you can input row</h4></div>
 			<input type="text" id="row" placeholder="you can input 5~40 num">
 		</div>
+		<div class="speedbox">
+			<h3>please chooes you box</h3>
+				<div class="speed one speeds" data-num="200">初级</div>
+				<div class="speed two" data-num="100">中级</div>
+				<div class="speed three" data-num="50">高级</div>
+			</div>
+			<div class="back">
+			<h3>please chooes you Scene color</h3>
+				<div class="color summer jijie">炎炎夏日</div>
+				<div class="color winter">冰雪覆盖</div>
+				<div class="color autumn">秋风飒爽</div>
+				<div class="color spring">春风怡人</div>
+			</div>
 			<div class="oprate">
 			<div><h3>Game opration</h3></div>
 				<div class="btn start">start</div>
 				<div class="btn stop">stop</div>
 				<div class="btn restart">restart</div>
 			</div>
-			<div class="speed">
-			<h3>please chooes you box</h3>
-				<div class="speed1">初级</div>
-				<div class="speed2">中级</div>
-				<div class="speed3">高级</div>
-			</div>
-		</div>
-		<div class="sence">
 			
+		</div>
+		<div class="right">
+		<div class="sence">
+			</div>
 		</div>
 	</div>
 </body>
@@ -130,12 +190,44 @@ $(function(){
 	var food = {};
 	var dir = 40;
 	var timerId;
-	var hang;
+	var hang = 20;
+	var num ;
+
 	///////////////idto
 	var toid = function(x,y){
 		return(x+'-'+y)
 	}
-	///////////////show sence
+
+
+	//////////主题
+	$('.color').bind('click',function(){
+		if($(this).hasClass('summer')){
+			$('.color').removeClass('jijie')
+			$(this).addClass('jijie')
+			$('.black').attr('class','black')
+			$('.black').addClass('summers')
+			$('.right').css('background','#E91E63')
+		}else if($(this).hasClass('winter')){
+				$('.color').removeClass('jijie')
+			$(this).addClass('jijie')
+			$('.black').attr('class','black')
+			$('.black').addClass('winters')
+			$('.right').css('background','#80DEEA')
+		}else if($(this).hasClass('autumn')){
+				$('.color').removeClass('jijie')
+			$(this).addClass('jijie')
+			$('.black').attr('class','black')
+			$('.black').addClass('autumns')
+			$('.right').css('background','#FFC107')
+		}else if($(this).hasClass('spring')){
+				$('.color').removeClass('jijie')
+			$(this).addClass('jijie')
+			$('.black').attr('class','black')
+			$('.black').addClass('springs')
+			$('.right').css('background','#E1BEE7')
+		}
+	})
+		///////////////show sence
 	function showsence(hang){
 		var 
 		i = 0,
@@ -155,31 +247,49 @@ $(function(){
 		}	
 		sence.width(wh*hang).height(wh*hang)	
 	}
-	showsence()
+	showsence(20)
+		////////////////速度
+	$('.speed').bind('click',function(){		
+		$('.speed').removeClass('speeds')
+		$(this).addClass('speeds')
+		})
+		/////row botton
 	$('.button').bind('click',function(){
 		if($(this).hasClass('one')){
-			hang = 10
+			hang = 10;
+			$('.checked').removeClass('checked')
+			$(this).addClass('checked')
 		}else if($(this).hasClass('two')){
-			hang = 20
+			hang = 20;
+			$('.checked').removeClass('checked')
+			$(this).addClass('checked')
 		}else if($(this).hasClass('three')){
-			hang = 30
+			hang = 30;
+			$('.checked').removeClass('checked')
+			$(this).addClass('checked')
 		}
 		showsence(hang)	
-		showsnake()
-		showfood()
-
 	})
 	///////////////input hang
 	$('#row').bind('keydown',function(e){
 		if(e.keyCode===13){
-			var hang = $('#row').val()
+			$('.checked').removeClass('checked')
+			hang =$('#row').val()
+			if(isNaN(hang)){
+				alert('只能输入纯数字')
+				return;
+			}
+			if(hang<5||hang>40){
+				alert('请输入5~40之间的数字')
+				return;
+			}
 			showsence(hang)
 			$('#row').val('')
-			showsnake()
-			showfood(hang)
+			if(hang===10||hang===20||hang===30){
+				$('.button[data-num='+hang+']').addClass('checked')
+			}
 		}
 	})
-	
 	///////////////show snake
 	function showsnake(){
 		snake.forEach(function(v){
@@ -205,7 +315,19 @@ $(function(){
  				showsnake()
  				showfood()
 	}
-	/////////////move
+
+	////////control dir
+	$(document).bind('keydown',function(e){
+		if(e.keyCode>40||e.keyCode<37||Math.abs(e.keyCode-dir)===2){
+ 				return
+ 		}else if(e.keyCode===40||e.keyCode===39||e.keyCode===38||e.keyCode===37){
+ 			var num = e.keyCode;
+ 			dir = num;
+ 		}
+	})
+
+	////////move
+		/////////////move
 
 	function move(){
 		var jiutou = snake[snake.length-1],
@@ -220,9 +342,10 @@ $(function(){
 		}else if(dir===37){
 			xintou = {x:jiutou.x,y:jiutou.y-1}
 		}
-		if(snakebody[xintou.x+'-'+xintou.y]||xintou.x>19||xintou.y>19||xintou.x<0||xintou.y<0){
+		if(xintou.x>hang-1||xintou.y>hang-1||xintou.x<0||xintou.y<0){
 			alert('you are die')
  				clearInterval(timerId)
+ 				return;
  			}else{
  				snake.push(xintou)
  				weiba = snake.shift()
@@ -231,31 +354,45 @@ $(function(){
  				if(xintou.x===food.x&&xintou.y===food.y){
  				eatfood()
  			}
- 			}
- 		
+ 			}		
 	}
-	////////control dir
-	$(document).bind('keydown',function(e){
-		if(e.keyCode>40||e.keyCode<37||Math.abs(e.keyCode-dir)===2){
- 				return
- 		}else if(e.keyCode===40||e.keyCode===39||e.keyCode===38||e.keyCode===37){
- 			var num = e.keyCode;
- 			dir = num;
- 		}
-	})
 
-	////////move
+
 	var timerId ;
-	function timerone(num){
-		timerId = setInterval(move,num)
+	function timerone(){
+		if($('.speeds').hasClass('one')){
+			num = 200;
+			timerId = setInterval(move,200)
+		}else if($('.speeds').hasClass('two')){
+			num = 100;
+			timerId = setInterval(move,100)
+		}else if($('.speeds').hasClass('three')){
+			num = 50;
+			timerId = setInterval(move,50)
+		}
+		showsnake()
+		showfood(hang)		
 	}
 
 	function timerstop(){
 		clearInterval(timerId)
 	}
-	function start(){
-		timerone(200)
-	}
+
+	$('.start').bind('click',function(){
+		timerone()
+	})
+
+	$('.stop').bind('click',function(){
+		timerstop()
+	})
+
+	$('.restart').bind('click',function(){
+		$('.sence').empty('');
+		snake = [{x:0,y:0},{x:0,y:1},{x:0,y:2}];
+		food = {};
+		timerstop()
+		showsence()
+	})
 		
 })
 
