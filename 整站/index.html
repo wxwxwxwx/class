@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css" >
+</head>
+<body>
+  <header class="clearfix">
+    <div class="top_label">
+      &nbsp;
+      <a onclick="SetHome(this,'http://www.tongrentangkj.com/');" style="cursor: pointer;">设为首页</a><a href="#">网站导航</a>
+      <a href="index.aspx" class="language">中文</a> |
+      <a href="en/investor.aspx" class="language" target="_blank">English
+      </a>
+    </div>
+    <div class="head">
+      <div class="logo">
+        <a href="index.aspx"><img src="images/logo.jpg" title="北京同仁堂科技发展股份有限公司官方网站" width="199" height="60"></a>
+      </div>
+      <div class="list">
+        <ul>
+          <li><a href="index.aspx">首页</a></li>
+          <li><a href="#" onclick="return hs.htmlExpand(this, { 
+            width: '513', creditsPosition: 'bottom left', 
+            headingText: '', wrapperClassName: 'titlebar' } )">官方微信</a>
+            <div class="highslide-maincontent" style="width:513px;height:386px;margin:0 auto;">
+             <img src="images/ewm.jpg" width="503" height="376">
+           </div></li>
+           <li><a href="http://mail.tongrentangkj.com/">企业邮箱</a></li>
+           <li><a href="security.aspx" target="_blank">产品防伪</a></li>
+         </ul>
+         <form action="search.aspx" method="get" name="myFormSeach" id="myFormSeach">
+          <div id="search-form">
+            <input name="key_button" id="key_button" type="button" value="" class="submit" onclick="if(document.getElementById('key').value=='站内搜索'){document.getElementById('key').value=''}">
+            <input name="key" id="key" type="text" class="say" value="站内搜索" onfocus="if (value =='站内搜索'){value =''}" onblur="if (value ==''){value='站内搜索'}">
+
+          </div>
+        </form>
+      </div>
+      <div class="effect">
+        <div id="slideBox" class="slideBox">
+          <ul class="slides" style="height: 396px;">
+
+            <li class="" style="display: none;">
+              <a href="http://www.tongrentangkj.com/act/" target="_blank">
+                <img src="./images/b1.JPG" width="936" height="396">
+              </a>
+            </li>
+
+            <li class="" style="display: list-item; opacity: 0.578217;">
+              <a href="http://www.tongrentangkj.com/aboutus.aspx?id=1" target="_blank">
+                <img src="./images/b2.JPG" width="936" height="396">
+              </a>
+            </li>
+
+            <li class="active" style="display: list-item; ">
+              <a href="http://www.tongrentangkj.com/activity_detail.aspx?id=157" target="_blank">
+                <img src="./images/b3.JPG" width="936" height="396">
+              </a>
+            </li>
+
+            <li class="" style="display: none;">
+              <a href="http://www.tongrentangkj.com/news_detail.aspx?id=198" target="_blank">
+                <img src="./images/b4.JPG" width="936" height="396">
+              </a>
+            </li>
+          </ul>
+          <div class="menu">
+            <ul>
+             <li class="prod n1"><a href="aboutus.aspx?id=1" class="pro">公司介绍</a>
+              <blockquote style="display:none;left:5px">
+                <ul>
+
+                  <li><a href="aboutus.aspx?id=1">公司概况</a></li>
+
+                  <li><a href="aboutus.aspx?id=2">企业文化</a></li>
+
+                  <li><a href="cer.aspx?id=5">认证资质</a></li>
+
+                  <li><a href="aboutus.aspx?id=6">公司荣誉</a></li>
+
+                  <li><a href="aboutus.aspx?id=7">同仁堂历史</a></li>
+
+                </ul>
+              </blockquote>
+            </li>
+            <li class="prod n2"><a href="new.aspx" class="pro">新闻资讯</a><blockquote style="display:none">
+              <ul>
+
+                <li><a href="news.aspx?id=8">企业新闻</a></li>
+
+                <li><a href="news.aspx?id=9">媒体报道</a></li>
+
+                <li><a href="news.aspx?id=12">健康资讯</a></li>
+
+                <li><a href="news.aspx?id=10">行业动态</a></li>
+
+                <li><a href="news.aspx?id=11">政策法规</a></li>
+
+              </ul>
+            </blockquote></li>
+            <li class="prod n3"><a href="brand.aspx" class="pro">品牌产品</a> <blockquote style="display:none">
+              <ul>
+
+                <li><a href="brand_pro.aspx?id=13">中成药</a></li>
+
+                <li><a href="brand_pro.aspx?id=14">健康食品</a></li>
+
+                <li><a href="brand_pro.aspx?id=15">麦尔海化妆品</a></li>
+
+                <li><a href="http://www.tongrentangxam.com/Index.aspx" target="_blank">兴安盟公司</a></li>
+
+                <li><a href="brand_list.aspx?id=17">医疗服务</a></li>
+
+                <li><a href="brand_pro.aspx?id=16">名牌产品</a></li>
+
+              </ul>
+            </blockquote></li>
+            <li class="prod n4"><a href="investor.aspx" class="pro">投资者关系</a> <blockquote style="display:none">
+              <ul>
+
+                <li><a href="investor_info.aspx?id=18">公司架构</a></li>
+
+                <li><a href="investor_news.aspx?id=19">公司管治</a></li>
+
+                <li><a href="investor_info.aspx?id=20">财务概要</a></li>
+
+                <li><a href="investor_download.aspx?id=21">信息公告</a></li>
+
+                <li><a href="investor_download.aspx?id=22">定期报告</a></li>
+
+                <li><a href="investor_info.aspx?id=23">联系信息</a></li>
+
+              </ul>
+            </blockquote></li>
+            <li class="prod n5"><a href="activity.aspx" class="pro">主题活动</a><blockquote style="display:none">
+              <ul>
+
+                <li><a href="activity1.aspx?id=24">近期活动</a></li>
+
+                <li><a href="activity1.aspx?id=25">往期活动</a></li>
+
+                <li><a href="activity3.aspx?id=26">活动资料</a></li>
+
+                <li><a href="activity4.aspx?id=27">专家专栏</a></li>
+
+              </ul>
+            </blockquote></li>
+
+          </ul>
+        </div>
+        <ul class="pager">
+          <li class="active">
+            <a href="#">
+              <span>1</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="#">
+              <span>2</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="#">
+              <span>3</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="#">
+              <span>4</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</header>
+<form name="form1" method="post" action="index.aspx" id="form1">
+  <div id="container">
+    <div class="index_left">
+      <div class="left_intro">
+        <div class="title">
+          <span>新闻动态</span>
+          <div class="link"><a href="new.aspx">更多 &gt;&gt;</a></div>
+        </div>
+        <dl>
+          <dt><a href="news_detail.aspx?id=239"><img src="./images/trt.PNG" width="120" height="60"></a></dt>
+          <dd><a href="news_detail.aspx?id=239" title="质量--同仁堂的匾额之眼">质量--同仁堂的匾额之眼</a>
+           <span>摘自：中国质量报2016-03-2310：49阿胶味甘，性平，归肺、肝、肾经，可补血滋阴、润燥、止血。作为一味名贵中药，早已从皇家特供飞向寻常百姓家。北京同仁堂制胶历史已有百年，在追求自己的制胶品质上，有着企业自己独特的方式、方法。品味虽贵必不敢省物力阿胶品质好不好，关键是原材料：驴皮。阿胶质量的好坏，从原料皮的筛选就已经决定。这些年阿胶原材料短缺，驴皮价格...</span>
+         </dd>
+       </dl>
+       <dl>
+        <dt><a href="news_detail.aspx?id=238"><img src="./images/trt.PNG" width="120" height="60"></a></dt>
+        <dd><a href="news_detail.aspx?id=238" title="北京晨报网：老字号是阿胶品质保证">北京晨报网：老字号是阿胶品质保证</a> <span>来源：北京晨报网发布时间：2016年3月16日新年伊始，素有“补血圣药”之称的阿胶被推上风口浪尖。据媒体报道，我国阿胶目前的年总产量至少在5000吨以上，而制作阿胶最主要的原料——驴皮全年的供应量最多只能满足3000吨阿胶的原料需求。这中间多出来的2000吨阿胶原料从何而来存在疑问。这些年由于阿胶价格一直走高，但原料短缺，不乏一些厂家...</span></dd>
+      </dl>
+      </div>
+      <div class="left_intro01">
+        <div class="title">
+          <span>最新活动</span>
+          <div class="link"><a href="activity1.aspx?id=24">更多 &gt;&gt;</a></div>
+        </div>
+        <dl>
+          <dt><a href="activity_detail.aspx?id=233"><img src="./images/tl.JPG" width="140" height="60"></a></dt>
+          <dd><a href="activity_detail.aspx?id=233">“同仁堂药典APP正式上线”</a> <span> “同仁堂药典APP”简介随着移动互联网和手机终端的发展，移动互联网时代已经来...</span></dd>
+        </dl>
+      </div>
+    </div>
+
+
+    <div class="right_intro">
+      <div class="title">
+        <span>品牌产品</span>
+        <div class="link">
+          <a href="brand.aspx">更多 &gt;&gt;</a>
+        </div>
+      </div>
+      <dl>
+        <dt>
+          <a href="pro_detail.aspx?bid=10&amp;id=418">
+            <img src="./images/xhw.JPG" width="108" height="60">
+          </a>
+        </dt>
+        <dd>
+          <a href="pro_detail.aspx?bid=10&amp;id=418">西黄丸（天然方）</a> 
+          <div style="width:177px; height:60px; overflow:hidden;">核准日期：2007年03月27日修改日期：2010年07月14日西黄丸说明书请仔...</div>
+        </dd>
+      </dl>
+      <dl class="other">
+        <dt>
+          <a href="pro_detail.aspx?bid=10&amp;id=417">
+            <img src="./images/ajs.JPG" width="108" height="60">
+          </a>
+        </dt>
+        <dd>
+          <a href="pro_detail.aspx?bid=10&amp;id=417">北京同仁堂阿胶酥糖 </a>
+          <div style="width:177px; height:60px; overflow:hidden;">【产品名称】北京同仁堂冰爽宝（清凉西瓜味）【规格】120g/罐【配料表】白砂糖、...</div>
+        </dd>
+      </dl>
+      <dl>
+        <dt>
+          <a href="pro_detail.aspx?bid=10&amp;id=416">
+            <img src="./images/bsb.JPG" width="108" height="60">
+          </a>
+        </dt>
+        <dd>
+          <a href="pro_detail.aspx?bid=10&amp;id=416">北京同仁堂冰爽宝（清凉西瓜味）
+          </a> 
+          <div style="width:177px; height:60px; overflow:hidden;">【产品名称】北京同仁堂冰爽宝（清凉西瓜味）【规格】40g【配料表】白砂糖、高麦芽...
+          </div>
+        </dd>
+      </dl>
+
+    </div>
+  </div>
+  <footer>
+    <img src="images/home.png"> 通讯地址：北京市丰台区南三环中路20号 No.20 Nansanhuan Zhonglu Road.Fengtai District,Beijing,China 邮编(P.C)：100079 <br>
+    <img src="images/tel.png" align="absbottom"> 总机(TEL)：(8610)87632888 售后服务电话： 400-6000-988 <br>
+  京ICP备05021752号 互联网药品信息服务资格证书编号：(京)-非经营性-2014-0017
+  </footer>
+</form>
+</body>
+</html>

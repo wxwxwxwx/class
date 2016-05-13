@@ -61,5 +61,21 @@
 </body>
 <script src="./js/jquery-1.12.0.js"></script>
 <script src="./js/ajax1.js"></script>
-<script src="./js/contacts.js"></script>
+<script >
+	$(function(){
+	var $cent = $('.cent'),
+	$dl = $('.cent dl'),
+	$side = $('.side'),
+	$ul = $('.side ul'),
+	contacts=[];
+	if(localStorage.data){
+		contacts = JSON.parse(localStorage.data)
+	}else{
+		_.ajax('c:/WWW/php/gaincontacts.php',function(data){
+			contacts = JSON.parse(data)
+			localStorage.data = JSON.stringify(data)
+		})
+	}
+})
+</script>
 </html>

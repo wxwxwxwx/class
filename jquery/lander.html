@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	div,ul,li{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	.zhuozi{
+		margin: auto;
+		position: absolute;
+		width: 700px;
+		height: 400px;
+		top: -402px;
+		opacity: 0;
+		/*top: 20px;*/
+		left: 0;
+		right: 0;
+		border: 1px solid black;
+		background: green;
+	}
+	.zuo{
+		position: absolute;
+		width: 200px;
+		height: 622px;
+		top: 20px;
+		border:1px solid black;
+		left: 50%;
+		margin-left: -570px;
+	}
+	.you{
+		width: 200px;
+		height: 622px;
+		position: absolute;
+		border:1px solid black;
+		left: 50%;
+		top: 20px;
+		margin-left: 370px;
+	}
+	.zhong{
+		width: 700px;
+		height: 200px;
+		position: absolute;
+		top: 442px;
+		border:1px solid black;
+		left: 50%;
+		margin-left: -350px;
+	}
+	.zhuozi .pai{
+		width: 150px;
+		height: 200px;
+		border:1px solid black;
+		position: absolute;
+		margin:auto;
+		left: 0;
+		right: 0;
+		top: 20px;
+		opacity: 0;
+		font-size: 50px;
+		text-align: center;
+		line-height: 200px;
+	}
+	.zuo .pai{
+		width: 150px;
+		height: 33px;
+		border:1px solid black;
+		margin-left:  5px;
+		margin-top: 1px;
+	}
+	.you .pai{
+			width: 150px;
+		height: 33px;
+		/*float: left;*/
+		border:1px solid black;
+		margin-left:  43px;
+		margin-top: 1px;
+	}
+	.zhong .pai{
+		width: 34px;
+		height: 150px;
+		float: left;
+		border:1px solid black;
+		margin-top:  43px;
+		margin-left: 1px;
+	}
+	.fangkuai{
+		background: yellow;
+	}
+	.hongtao{
+		background: red;
+	}
+	.heitao{
+		background: blue;
+	}
+	.meihua{
+		background: pink;
+	}
+
+</style>
+<body>
+<div class="zhuozi">
+
+</div>	
+<ul>
+	<li class="zuo">		
+	</li>
+	<li class="zhong">	
+	</li>
+	<li class="you">
+	</li>
+</ul>
+</body>
+<script src="./jquery工程文件/jquery-1.12.0.js"></script>
+<script >
+	$(function(){
+		var poker = [],
+		zhuozi = $('.zhuozi'),
+		zuo = $('.zuo'),
+		zhong = $('.zhong'),
+		you = $('.you'),
+		dict = {},
+		numtopoker = {1:'A',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'10',11:'J',12:'Q',13:'K'},
+		color = ['meihua','heitao','hongtao','fangkuai'];
+
+
+		while(poker.length!=52){
+			var h = color[ Math.floor(Math.random()*4) ];
+			var s = Math.floor(Math.random()*13)+1; 
+			if(!dict[h+s]){
+				dict[h+s] = true;
+				poker.push( { type:h,num:s } )
+			}
+		}
+
+		var fapai = function(){
+			if(zhuozi.children().last().css('opacity')==1){
+				zhuozi.children().each(function(i,v){
+					var target;
+					var r;
+					if(i%3===0){
+						target = zhong
+						r = {left:'-=320',opacity:0}
+					}else if(i%3===1){
+						target = you
+						r = {left:'+=320',opacity:0}
+					}else if(i%3===2){
+						target = zuo;
+						r = {top:'+=210',opacity:0}
+					}
+					$(this)
+					.delay(50*i)
+					.animate(r,800)	
+					// .animate({opacity:0},100)
+					// .appendTo(target)
+					.queue(
+						
+					// $(this)
+					// .animate({opacity:1})
+					
+					// .appendTo(target)
+					// .animate({opacity:1})
+					// .dequeue()
+					function(){
+						$(this)
+						.appendTo(target)
+						.animate({opacity:1})
+						.dequeue()
+					}
+											
+					)									
+				})							
+			}
+		}
+		
+		var fangpai = function(){
+			$(poker).each(function(i,v){
+				$('<div>')
+				.addClass('pai')
+				.addClass(v.type)
+				.text( numtopoker[v.num] )
+				.delay(50*i)
+				.animate({opacity:1},50)
+				.appendTo(zhuozi)
+				
+			})
+			
+		}
+
+		$(document).on('dblclick',fapai)
+		// $(document).on('dblclick','div ul li',false)
+
+
+		zhuozi.animate({top:20,opacity:1},1000,fangpai)
+	})
+</script>
+</html>

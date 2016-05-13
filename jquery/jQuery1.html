@@ -20,8 +20,8 @@
 </style>
 <body>
 <ul id="text" class="text">
-	<li class="item"></li>
-	<li class="item"></li>
+	<li class="item">boy<input type="radio" name="sex" data-role="boy">girl<input type="radio" name="sex" data-role="girl"></li>
+	<li class="item">boy<input type="radio" name="sex" data-role="boy">girl<input type="radio" name="sex" data-role="girl"></li>
 	<li class="item"></li>
 	<li class="item"></li>
 	<li class="item"></li>
@@ -40,5 +40,47 @@
 	
 </body>
 <script src="./jquery工程文件/jquery-1.12.0.js"></script>
+<script >
+	$(function(){
+		// var masage = [
+		// 	{name:'aa',sex:'nv'},
+		// 	{name:'bb',sex:'nan'},
+		// ]
+		// $('#text input:odd').prop('name',function(i){
+		// 	return 'sex'+i
+		// })
+		// $('#text input:even').prop('name',function(i){
+		// 	return 'sex'+i
+		// })
+		// $('#text input:odd').prop('checked',function(i){
+		// 	if(masage[i].sex==='nv'){
+		// 		return true;
+		// 	}
+		// })
+		// $('#text input:even').prop('checked',function(i){
+		// 	if(masage[i].sex==='nan'){
+		// 		return true;
+		// 	}
+		// })
+	var aa = [
+			{name:'aa',sex:'nv'},
+			{name:'bb',sex:'nan'},
+		]
+	$('#text input').prop('name',function(i){
+		return 'sex'+Math.floor(i/2)
+	})
+
+// console.log()
+$('#text li:has(input)').each(function(i){
+	if(aa[i].sex === 'nan'){
+		$(this).find('input:first').prop('checked',true)
+	}else{
+		$(this).find('input:last').prop('checked',true)
+	}
+})
+	
+})
+
+</script>
 
 </html>

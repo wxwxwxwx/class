@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+<body>
+<div id="centent">
+	<div id="cent">
+		<div class="top">
+			<h1>todos</h1>
+			<input  name=""  placeholder="What needs to be done?" class="inputs" autofocus>
+		</div>
+		<div class="hide">
+			<div class="main">
+				<input id="toggle-all" type="checkbox">
+
+				<ul id="todo-list">
+					<li data-id="10010">
+						<div class="view">
+						<input class="toggle check" type="checkbox">
+						<label>aaaaa</label>
+						<button class="destroy"></button>
+						</div>
+						<input class="edit" value="aaaaa">
+					</li>
+					
+				</ul>
+			</div>
+			<div class="next">
+				<span id="todo-count"><strong>1</strong> item left</span>
+				<ul id="filters">
+				<li id="select">
+					<a class="selected select alla" >All</a>
+				</li>
+				<li id="select">
+					<a class="activea select" >Active</a>
+				</li>
+				<li id="select">
+					<a class="completeda select" >Completed</a>
+				</li>
+			</ul>
+			<button id="clear-completed">Clear completed</button>
+			</div>
+		</div>
+		<div id="footer">
+		<p>Double-click to edit a todo</p>
+		<p>Created by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+		<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+	</div>
+	
+	</div>
+		
+	
+</div>
+
+
+</body>
+<script src="./js/jquery-1.12.0.js"></script>
+<script src="./js/index.js"></script>
+</html>

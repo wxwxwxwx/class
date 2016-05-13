@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.zhuozi{
+		width: 700px;
+		height: 400px;
+		top: -432px;
+		margin:auto;
+		left: 0;
+		right: 0;
+		position: absolute;
+		border: 1px solid black;	
+		background: green;
+	}
+	.block{
+		width: 40px;
+		height: 70px;
+		margin: 5px;
+		border: 1px solid black;
+		float: left;
+	}
+	.zhong{
+		width: 700px;
+		height: 200px;
+		position: absolute;
+		left: 45;
+		border: 1px solid black;
+		top: 420px;
+	}
+	.zuo{
+		width: 200px;
+		height: 620px;
+		position: absolute;
+		left: -222px;
+		border: 1px solid black;
+	}
+	.you{
+		width: 200px;
+		height: 620px;
+		position: absolute;
+		left: 722px;
+		border: 1px solid black;
+	}
+	.heitao{
+		background: red;
+	}
+	.hongtao{
+		background: yellow;
+	}
+	.fangpian{
+		background: blue;
+	}
+	.meihua{
+		background: #ccc;
+	}
+</style>
+<body>
+<div class="sence">
+	<div class="zhuozi">
+		<div class="zuo"></div>
+		<div class="zhong"></div>
+		<div class="you"></div>
+	</div>
+
+</div>
+	
+</body>
+<script src="./jquery工程文件/jquery-1.12.0.js"></script>
+<script>
+	var poker = [],
+	zhuozi = $('.zhuozi'),
+	zuo = $('.zuo')
+	zhong = $('.zhong')
+	you = $('.you'),
+	color = ['heitao','fangpian','hongtao','meihua'],
+	dict = {};
+	while(poker.length!=52){
+			var h = color[ Math.floor(Math.random()*4) ];
+			var s = Math.floor(Math.random()*13)+1; 
+			if(!dict[h+s]){
+				dict[h+s] = true;
+				poker.push( { type:h,num:s } )
+			}
+		}
+
+	 pokers = function(i){
+		
+		return poker[i]
+	}
+	
+
+	var givepokers = function(){
+
+	}
+	var putpoker = function(){
+		var timerId,i = 0;
+		
+		var numtopoker = {1:'A',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'10',11:'J',12:'Q',13:'K'};
+		timerId = setInterval(function(){
+
+			$('<div>')
+			.addClass('block')
+			.text( numtopoker[ pokers(i).num ] )
+			.addClass(pokers(i).type)
+			.appendTo(zhuozi)
+			if( i === poker.length-1 ){
+			clearInterval(timerId)
+			$(document).on('click',givepokers)
+		}
+			i++;	
+		},100)
+
+		
+		
+	}
+
+	zhuozi.animate({top:30},1000)
+	.queue(putpoker)
+
+</script>
+</html>

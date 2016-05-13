@@ -59,9 +59,7 @@ top:350px;
 
 
 }
-marquee{
-	font-size: 50px;
-}
+
 </style>
 <body>
 <div class="top"><img src="./image/top.png" alt=""></div>
@@ -77,7 +75,6 @@ marquee{
  	var box1 = document.querySelector('.tp0')
  	var box2 = document.querySelector('.tp1')
  	var box3 = document.querySelector('.tp2')
- 	console.log(box)
 	var zimujihe = {};
 	var flag=true;
 	var shuzi=5;
@@ -102,8 +99,8 @@ marquee{
     createzimu()
 }
 	var removezimu = function(zimu){
-		var el = zimujihe[zimu].yuansu
-		el.parentElement.removeChild(el)
+		// var el = zimujihe[zimu].yuansu
+		// el.parentElement.removeChild(el)
 		delete zimujihe[zimu]
 	}    
 	box1.onclick=function(e){  		
@@ -153,7 +150,7 @@ marquee{
  			var data=zimujihe[i]
  			var el=data.yuansu
  			data.top+=data.off
-            if(data.top>x){
+            if(data.top>xx){
             	arr.push(i)
             }
  		}

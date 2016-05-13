@@ -1,9 +1,16 @@
 $(function(){
-	var $cent = $('.cent')
-	var $dl = $('.cent dl')
-	var $side = $('.side')
-	var $ul = $('.side ul')
-	var contacts=[]
+	var 
+	// contacts = [
+	// {},
+	// {},
+	// {},
+	// {},
+	// ],
+	 $cent = $('.cent'),
+	 $dl = $('.cent dl'),
+	 $side = $('.side'),
+	 $ul = $('.side ul'),
+	 contacts=[]
 	if(localStorage.data){
 		contacts = JSON.parse(localStorage.data)
 	}else{

@@ -1,0 +1,201 @@
+body {
+    color: #8B8B8B;
+    background-color: #FFF;
+    font-size: 12px;
+    line-height: 1.5em;
+    font-family: Arial,Tahoma,"hiragino sans gb",Helvetica;
+    margin: 0;
+    display: block;
+}
+ul,li,p,pre,body{
+	padding: 0;
+	margin:0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+audio:not([controls]) {
+    display: none;
+}
+audio {
+    width: 300px;
+    height: 30px;
+}
+.qqaudio{
+	    width: 563px;
+    height: 115px;
+    position: fixed;
+    _position: absolute;
+    bottom: 20px;
+    box-shadow: 3px 3px 6px RGBA(0,0,0,.42);
+    border-radius: 4px;
+    z-index: 1;
+    left: 0;
+    .qq-opration{
+		background-color: #000;
+	    width: 541px;
+	    height: 115px;
+    }
+    .qq-active-tip{
+		display: inline-block;
+		background-image: url(../image/player_bg.png);
+		background-repeat: no-repeat;
+		background-position: -376px -89px;
+		display: block;
+		font-size: 0;
+		width: 17px;
+		height: 20px;
+		position: absolute;
+		right: 3px;
+    }
+    .qq-open-list{
+		background-image: url(../image/player_bg.png);
+		background-repeat: no-repeat;
+		background-position: -222px -97px;
+		width: 47px;
+		height: 28px;
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		right: 61px;
+		cursor: pointer;
+		span{
+			color: #FFF;
+		    font-family: tahoma;
+		    font-size: 11px;
+		    line-height: 28px;
+		    display: inline-block;
+		    text-align: center;
+		    width: 24px;
+		    height: 28px;
+		    margin-left: 23px;
+		}
+    }
+    .qq-btn-geci{
+		background-image: url(../image/player_bg.png);
+		background-repeat: no-repeat;
+		background-position: -452px 0;
+		display: block;
+		width: 14px;
+		height: 14px;
+		position: absolute;
+		top: 7px;
+		right: 37px;
+		text-indent: -9999px;
+		cursor: pointer;
+    }
+    .qq-show-hide{
+		background-image: url(../image/player_bg.png);
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		display: block;
+		width: 22px;
+		height: 115px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		border:none;
+		outline: none;
+		span{
+			display: none;
+		}
+    }
+    .qq-play-list{
+    	width: 541px;
+    	height: 507px;
+		position: absolute;
+		top: -507px;
+		left: 0;
+		background-color: #1b1b1b;
+		box-shadow: rgba(0,0,0,.47)
+    }
+}
+
+
+.qq-opration{
+	.op-info{
+		width: 111px;
+		.op-info-pic{
+			display: block;
+			float: left;
+			width: 90px;
+			height: 90px;
+			margin:10px;
+			overflow: hidden;
+		}
+		.music-main-info{
+			font-family: tahoma;
+    		float: left;
+		}
+	}
+	.op-op{
+		width: 280px;
+		position: absolute;
+		top: 43px;
+		left: 248px;
+		strong {
+		    background: url(../image/player_bg.png) no-repeat;
+		    display: block;
+		    vertical-align: top;
+		    width: 36px;
+		    height: 28px;
+		    float: left;
+		    margin-top: 7px;
+		    margin-left: 3px;
+		    border: 0;
+		    cursor: pointer;
+		    span{
+		    	display: none;
+		    }
+		}
+		.opmusic-pre{
+			background-position: -69px 0;
+		}
+		.opmusic-play{
+			background-position: -105px -42px;
+		}
+		.opmusic-next{
+			background-position: -147px 0;
+		}
+		.opmusic-cycle{
+			background-position: -219px 0;
+		}
+		.volume{
+			display: inline-block;
+		    width: 100px;
+		    height: 24px;
+		    float: left;
+		    margin-top: 10px;
+		    margin-left: 8px;
+		}
+	}
+	.op-select{
+		display: none;
+	    background-color: #383838;
+	    width: 32px;
+	    padding: 5px 0;
+	    position: absolute;
+	    left: 376px;
+	    _left: 379px;
+	    bottom: 35px;
+	    _bottom: 34px;
+	    border-radius: 3px;
+	    box-shadow: 3px 3px 6px RGBA(0,0,0,.42);
+	    z-index: 12;
+	}
+	.op-press{
+		font-size: 0;
+	    width: 541px;
+	    height: 4px;
+	    position: absolute;
+	    bottom: 0;
+	    left: 0;
+	}
+	.play-show{
+		width: 50px;
+	    height: 24px;
+	    position: absolute;
+	    z-index: 3
+	}
+}

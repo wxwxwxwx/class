@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.sence{
+		position: absolute;
+		width: 600px;
+		height: 600px;
+		background: white;
+		margin: auto;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		border: 1px solid black;
+		padding-right: 2px;
+		padding-top: 2px;
+	}
+	.block{
+		width: 58px;
+		height: 58px;
+		margin-bottom: 2px;
+		margin-left: 2px;
+		background: #443D3D;
+		float: left;
+		color: white;
+		text-align: center;
+		line-height: 58px;
+		font-weight: 700;
+		font-size: 16px;
+	}
+	.tip{
+		background: #F44336;
+	}
+	.biaoji::after{
+		content:'⛳';
+		/*background:black;*/
+	}
+	.success{			
+		width:500px;
+		height: 300px;
+		background: red;
+		position: fixed;
+		top: 100px;
+		margin:auto;
+		left: 0;
+		right: 0;
+	}
+</style>
+<body>
+<div class="sence">
+	
+</div>
+<div class="success">
+	
+</div>
+	
+</body>
+<script src="./jquery工程文件/jquery-1.12.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(document).on('contextmenu',false)
+		var toid = function(a,b){
+			return a+'-'+b;
+		}
+		
+		var jisuan = function(x,y){
+			var num = 0;
+			console.log(x,y)
+			if($('#'+toid(x,y-1)).is('.lei')){ num++ }
+			if($('#'+toid(x,y+1)).is('.lei')){ num++ }
+			if($('#'+toid(x-1,y-1)).is('.lei')){ num++ }
+			if($('#'+toid(x-1,y+1)).is('.lei')){ num++ }
+			if($('#'+toid(x+1,y-1)).is('.lei')){ num++ }
+			if($('#'+toid(x+1,y+1)).is('.lei')){ num++ }
+			if($('#'+toid(x+1,y)).is('.lei')){ num++ }
+			if($('#'+toid(x-1,y)).is('.lei')){ num++ }
+			return num;
+		}
+    if($('tip').text()===1){
+    	$(this).css('color','red')
+    }
+
+
+		var zuoji = function(e){
+			if($(this).is('.biaoji')){
+				return;
+			}
+			if(e.data.lei){
+				alert('you are die')
+				render()
+			}else{
+				$(this)
+				.addClass('tip')
+				.text(jisuan(e.data.x,e.data.y))
+			}
+		}
+		var youji = function(e){
+			if($(this).is('.tip')){
+				return
+			}
+			$(this).toggleClass('biaoji')
+			if($('.biaoji').length===$('.lei').length){
+				if($('.biaoji.lei').length===$('.lei').length){
+					alert('you win')
+					render()
+				}				
+			}
+		}
+		var Handler = function(e){
+			if(e.which===3){
+				$.proxy(youji,this)(e)
+			}else if(e.which===1){
+				$.proxy(zuoji,this)(e)
+			}
+		}
+
+		function render(){
+			$('.sence').empty('')
+			
+			for( var i=0;i<10;i++){
+				for(var j=0;j<10;j++){
+					var islei = Math.random() > 0.9
+					$('<div>')
+					.addClass( function(){
+						return 'block '+(islei?'lei':'')
+					} )
+					.attr('id',i+'-'+j)
+					.text( function(){
+						return islei?'lei':''
+					} )
+					.on('mousedown',{x:i,y:j,lei:islei},Handler)
+					.appendTo($('.sence'))
+				}
+			}
+		}
+		render()
+		// function showlei(){
+		// 	$('.block').attr('data-role','wu')
+		// 	for(var i=0;i<lei;i++){
+		// 		var a = Math.floor(Math.random()*20)
+		// 		var b = Math.floor(Math.random()*20)
+
+		// 		$('#'+a+'-'+b).attr('data-role','lei')
+		// 		dict = {x:a,y:b,lei:true}
+		// 	}			
+		// }
+		// showlei()
+	
+		// $(document).mousedown(function(e){
+		// 	if(e.which===1){
+		// 		function()
+		// 	}else if(e.which===3){
+		// 		console.log(2)
+		// 	}
+		// })
+		// $(document).mouseout
+	})
+</script>
+</html>

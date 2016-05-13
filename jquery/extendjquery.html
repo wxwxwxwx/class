@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script src="./jquery工程文件/jquery-1.12.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		/////为$扩展的方法
+		$.extend({
+			reverseStr:function(a){
+				for(var i = a.length-1,b='';i>=0;i--){
+					b += a[i]
+				}
+				return b
+			},
+			quchongs:function(a){
+				var dict={}
+				var r=[]
+				for(var i=0;i<a.length;i++){
+					var v = a[i]
+					if(!dict[v]){
+						dict[v]=true;
+						r.push(v)
+					}
+				}
+				return r;
+			}
+		})
+
+		/////为jquery对象扩展的方法
+		$.fn.extend({
+			changecolor:function(c){
+				$(this).css('color',c)
+				return this
+			}
+		})
+		
+	})
+</script>
+</html>

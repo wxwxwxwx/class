@@ -1,0 +1,70 @@
+%clear{
+	
+		clear:both;
+		content: '';
+		display: table;
+	
+}
+
+%juzhong{
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+%yangshi{
+	padding: 0;
+	margin:0;
+}
+body,ul,li{
+	@extend %yangshi;
+	list-style: none;
+}
+.box{
+	@extend %juzhong;
+	width: 100%;
+	height: 100%;
+	ul{
+		width: 100%;
+		height: 80px;
+		margin-bottom: 10px;
+		@extend %clear;
+		li{
+			width: percentage(1/21);
+			height: 80px;
+			float: left;
+		}
+	}
+}
+
+
+$list:(
+'red':red,
+'blue':blue,
+'green':green,
+'orange':orange,
+'purple':purple,
+'yellow':yellow,
+'cyan':cyan
+	);
+@each $class-name in map_keys($list){
+	$color:map_get($list,$class-name);
+	.#{$class-name} li:nth-child(11){
+		background:$color;
+	}
+	@for $i from 1 to 11{
+		.#{$class-name} li:nth-child(#{$i}){
+			background: lighten($color,5*(11-$i))
+		};
+		.#{$class-name} li:nth-child(#{$i+11}){
+			background: darken($color,5*($i))
+		};
+	}
+}
+
+
+
+
+

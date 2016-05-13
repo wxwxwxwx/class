@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.da{
+		width: 300px;
+		height: 300px;
+		border:1px solid black;
+		position: relative;
+	}
+	.xiao{
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		border:1px solid red;
+		top: 0;
+		left: 0;
+	}
+	.da:hover .xiao{
+		top: 100px;
+		background: yellow;
+		transition:all .5s ease;
+	}
+
+	/*input{
+		display: none;
+	}*/
+	.bb{
+		width: 30px;
+		height: 30px;
+		display: block;
+		background: green;
+		border-radius: 50%;
+	}
+	.aa {
+	background: blue;
+	}
+	input:checked +.zhao .aa{
+background: pink;
+	}
+
+
+	.content{
+		width: 700px;
+		height: 200px;
+		border:1px solid #ccc;
+		padding: 10px;
+		margin-top: 30px;
+		text-align: center;
+	}
+	ul,li,input{
+		padding: 0;
+		margin:0;
+		list-style: none;
+	}
+
+	.content li{
+	width: 100%;
+	height: 40px;
+	border:1px solid black;
+	}
+	.content .view{
+		width: 100%;
+		height: 100%;
+
+	}
+	.view input[type=checkbox]{
+		position: absolute;
+		left: 20px;
+		height: 40px;
+		width: 40px;
+		/*position:absolute;clip: rect(6 15 15 6);*/
+
+	}
+	.view span{
+		
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<body>
+	<div class="da">
+		<div class="xiao"></div>
+	</div>
+	<input type="checkbox" id="xx">
+	<div class="zhao">
+		<label for="xx" class="bb"></label>
+		<ul class="aa">
+			<li>1</li>
+			<li>2</li>
+		</ul>
+	</div>
+
+	<ul class="content">
+		<li>
+			<div class="view">
+				<input type="checkbox">
+				<span class="This is a massage"></span>
+				<input type="text" value="This is a massage">
+				<button class="destroy"></button>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>

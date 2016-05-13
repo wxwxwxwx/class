@@ -1,0 +1,486 @@
+
+    *{
+    	margin:0;
+    	padding:0;
+    	list-style:none;
+    }
+    body,html{
+    	background:#686868;
+    	background:url(bg.jpg) repeat 0 0;
+    }
+	.mu{
+		width:600px;
+		height:615px;
+		position:absolute;
+		margin:auto;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+	    background:#18191B;
+	    position:relative;
+	    z-index:10;
+	    top:6px;
+	    line-height: 450px;
+	    background:url(bg2.jpg) repeat 0 0;
+	}
+	#gamename{
+		display:none;
+	    font-family: 'DeadSpaceTitleFont';
+	    color:#1C76C4;
+	    font-size:32px;
+	    font-weight:500;
+	    position:absolute;
+	    top:0;
+	    right:20px;
+	}
+	.xian{
+		width:80%;
+		height:1px;
+		background:#fff;
+		position: absolute;
+		top:243px;
+		left:-865px;
+	}
+	.xian2{
+		width:50%;
+		height:1px;
+		background:#fff;
+		position:absolute;
+		top:250px;
+		right:-720px;
+	}
+	.mu #explain{
+		display:none;
+		font-size:14px;
+		font-family: 'DeadSpaceTitleFont';
+	    color:#1C76C4;
+	    font-weight:400;
+	    width:350px;
+	    position: absolute;
+	    top:260px;
+	    right:20px;
+	    line-height:1;
+		text-align:right;
+	}
+	.g-card .gc{
+	    width:220px;
+	    height:50px;
+		border:1px solid #00A8D7;
+	    margin-right:7px;
+	    margin-top:14px;
+	    cursor:pointer;
+	    position:relative;
+	    top:370px;
+	    left:200px;
+	    color:#E4EFF3;
+	    font-size:24px;
+	    font-weight:400;
+	    font-family: "LcdD";
+	    line-height: 50px;
+	    text-align: center;
+	    display:none;
+	}
+	.gc:hover{
+		font-size:27px;
+		color:#00A8D7;
+		background:rgba(255,255,255,0.09);
+	}
+	.gc .border-up{
+		width:0;
+		height:1px;
+		background:#ACEAFF;
+		position:absolute;
+		top:-1px;
+		left:0;
+		transition:all 0.5s ease-out;
+	}
+	.gc:hover .border-up{
+		width:220px;
+		transition:all 0.5s ease-out
+	}
+	.gc .border-bottom{
+		width:0;
+		height:1px;
+		background:#ACEAFF;
+		position:absolute;
+		bottom:-1px;
+		right:0;
+		transition:all 0.5s ease-out;
+	}
+	.gc:hover .border-bottom{
+		width:220px;
+		transition:all 0.5s ;
+	}
+	.gc .border-right{
+		width:1px;
+		height:0;
+		background:#ACEAFF;
+		position:absolute;
+		bottom:0;
+		right:-1px;
+		transition:all 0.5s ease-out;
+	}
+	.gc:hover .border-right{
+		height:50px;
+		transition:all 0.5s ease-out;
+	}
+	.gc .border-left{
+		width:1px;
+		height:0;
+		background:#ACEAFF;
+		position:absolute;
+		top:0;
+		left:-1px;
+		transition:all 0.5s ease-out;
+	}
+	.gc:hover .border-left{
+		height:50px;
+		transition:all 0.5s ease-out;
+	}
+
+	#sence{
+		width:600px;
+		border:1px solid #0B0C0E;
+		border-bottom:none;
+		border-right:none;
+		position:absolute;
+		margin:auto;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+	    background:#18191B;
+	}
+	.block{
+		width:29px;
+		height:29px;
+	    float:left;
+	    margin:0 1px 1px 0;
+		background:#212121;
+	}
+	.food{
+		background:#eeee00;
+	}
+	.snake{
+		background:#149BE1;
+	}
+	.contain{
+		width:180px;
+		position:fixed;
+		right:0;
+		top:0;
+		bottom:0;
+		padding:50px;
+		border:1px solid #bebebe;
+		background:#1f1f1f;
+		text-align:center;
+		display:none;
+	}
+	.contain .size{
+		width:auto;
+		height:auto;
+		padding:20px 20px;
+		border:1px solid #ccc;
+		text-align:center;
+	}
+	.a{
+		width:auto;
+		height:40px;
+		margin-bottom:13px;
+		text-align:center;
+		line-height:40px;
+		border:1px solid #ababab;
+		font-size:18px;
+		font-family:Arial;
+		font-weight:400;
+		color:#cfcfcf;
+		cursor:pointer;
+	}
+	#rowSelect{
+		width:100%;
+		height:40px;
+		line-height:40px;
+		text-align:center;
+		margin-top:20px;
+		outline:none;
+		border:none;
+		border-bottom:1px solid #eaeaea;
+		background:none;
+		font-size:14px;
+		color:#03FDFE;
+	}
+	.btn{
+		margin-top:30px;
+	}
+	.b{
+		width:auto;
+		height:40px;
+		line-height:40px;
+		font-size:18px;
+		font-family:Arial;
+		font-weight:400;
+		color:#cfcfcf;
+		border:1px solid #ededed;
+		margin-top:10px;
+		cursor:pointer;
+	}
+	.active{
+		color:#0E93FA;
+		border:1px solid #eeee00;
+		background: rgba(255,255,255,0.07);
+	}
+<body>
+	<div class="contain" style="display: block;">
+		<ul class="size">
+			<li data-row="15" class="a c">15*15</li>
+			<li data-row="20" class="a">20*20</li>
+			<li data-row="30" class="a">30*30</li>
+		</ul>
+		<input type="text" id="rowSelect" placeholder="请输入5-40之间的数">
+		<ul class="btn">
+			<li data-r="start" class="b">start</li>
+			<li data-r="pause" class="b">pause</li>
+			<li data-r="restart" class="b">restart</li>
+		</ul>
+	</div>
+	<div class="mu" style="display: none;">
+		<span id="gamename" style="display: inline-block;">GLUTTONOUS SNAKE</span>
+		<i class="xian" style="left: 100px;"></i>
+		<i class="xian2" style="right: 20px;"></i>
+		<span id="explain" style="display: inline-block;">This Game Made By A Student Who Love Something Cool </span>
+		<ul>
+			<li class="g-card">
+				<div class="gc" style="display: block;">
+					Start Game
+					<div class="border-up"></div>
+					<div class="border-right"></div>
+					<div class="border-left"></div>
+					<div class="border-bottom"></div>
+				</div>
+			</li>
+			<li class="g-card">
+				<div class="gc" style="display: block;">
+					About Us
+					<div class="border-up"></div>
+					<div class="border-right"></div>
+					<div class="border-left"></div>
+					<div class="border-bottom"></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div id="sence" style="width: 600px; height: 600px;"><div class="block snake" id="0-0" style="width: 29px; height: 29px;"></div><div class="block snake" id="0-1" style="width: 29px; height: 29px;"></div><div class="block snake" id="0-2" style="width: 29px; height: 29px;"></div><div class="block" id="0-3" style="width: 29px; height: 29px;"></div><div class="block" id="0-4" style="width: 29px; height: 29px;"></div><div class="block" id="0-5" style="width: 29px; height: 29px;"></div><div class="block" id="0-6" style="width: 29px; height: 29px;"></div><div class="block" id="0-7" style="width: 29px; height: 29px;"></div><div class="block" id="0-8" style="width: 29px; height: 29px;"></div><div class="block" id="0-9" style="width: 29px; height: 29px;"></div><div class="block" id="0-10" style="width: 29px; height: 29px;"></div><div class="block" id="0-11" style="width: 29px; height: 29px;"></div><div class="block" id="0-12" style="width: 29px; height: 29px;"></div><div class="block" id="0-13" style="width: 29px; height: 29px;"></div><div class="block" id="0-14" style="width: 29px; height: 29px;"></div><div class="block" id="0-15" style="width: 29px; height: 29px;"></div><div class="block" id="0-16" style="width: 29px; height: 29px;"></div><div class="block" id="0-17" style="width: 29px; height: 29px;"></div><div class="block" id="0-18" style="width: 29px; height: 29px;"></div><div class="block" id="0-19" style="width: 29px; height: 29px;"></div><div class="block" id="1-0" style="width: 29px; height: 29px;"></div><div class="block" id="1-1" style="width: 29px; height: 29px;"></div><div class="block" id="1-2" style="width: 29px; height: 29px;"></div><div class="block" id="1-3" style="width: 29px; height: 29px;"></div><div class="block" id="1-4" style="width: 29px; height: 29px;"></div><div class="block" id="1-5" style="width: 29px; height: 29px;"></div><div class="block" id="1-6" style="width: 29px; height: 29px;"></div><div class="block" id="1-7" style="width: 29px; height: 29px;"></div><div class="block" id="1-8" style="width: 29px; height: 29px;"></div><div class="block" id="1-9" style="width: 29px; height: 29px;"></div><div class="block" id="1-10" style="width: 29px; height: 29px;"></div><div class="block" id="1-11" style="width: 29px; height: 29px;"></div><div class="block" id="1-12" style="width: 29px; height: 29px;"></div><div class="block" id="1-13" style="width: 29px; height: 29px;"></div><div class="block" id="1-14" style="width: 29px; height: 29px;"></div><div class="block" id="1-15" style="width: 29px; height: 29px;"></div><div class="block" id="1-16" style="width: 29px; height: 29px;"></div><div class="block" id="1-17" style="width: 29px; height: 29px;"></div><div class="block" id="1-18" style="width: 29px; height: 29px;"></div><div class="block" id="1-19" style="width: 29px; height: 29px;"></div><div class="block" id="2-0" style="width: 29px; height: 29px;"></div><div class="block" id="2-1" style="width: 29px; height: 29px;"></div><div class="block" id="2-2" style="width: 29px; height: 29px;"></div><div class="block" id="2-3" style="width: 29px; height: 29px;"></div><div class="block" id="2-4" style="width: 29px; height: 29px;"></div><div class="block" id="2-5" style="width: 29px; height: 29px;"></div><div class="block" id="2-6" style="width: 29px; height: 29px;"></div><div class="block" id="2-7" style="width: 29px; height: 29px;"></div><div class="block" id="2-8" style="width: 29px; height: 29px;"></div><div class="block" id="2-9" style="width: 29px; height: 29px;"></div><div class="block" id="2-10" style="width: 29px; height: 29px;"></div><div class="block" id="2-11" style="width: 29px; height: 29px;"></div><div class="block" id="2-12" style="width: 29px; height: 29px;"></div><div class="block" id="2-13" style="width: 29px; height: 29px;"></div><div class="block" id="2-14" style="width: 29px; height: 29px;"></div><div class="block" id="2-15" style="width: 29px; height: 29px;"></div><div class="block" id="2-16" style="width: 29px; height: 29px;"></div><div class="block" id="2-17" style="width: 29px; height: 29px;"></div><div class="block" id="2-18" style="width: 29px; height: 29px;"></div><div class="block" id="2-19" style="width: 29px; height: 29px;"></div><div class="block" id="3-0" style="width: 29px; height: 29px;"></div><div class="block" id="3-1" style="width: 29px; height: 29px;"></div><div class="block" id="3-2" style="width: 29px; height: 29px;"></div><div class="block" id="3-3" style="width: 29px; height: 29px;"></div><div class="block" id="3-4" style="width: 29px; height: 29px;"></div><div class="block" id="3-5" style="width: 29px; height: 29px;"></div><div class="block" id="3-6" style="width: 29px; height: 29px;"></div><div class="block" id="3-7" style="width: 29px; height: 29px;"></div><div class="block" id="3-8" style="width: 29px; height: 29px;"></div><div class="block" id="3-9" style="width: 29px; height: 29px;"></div><div class="block" id="3-10" style="width: 29px; height: 29px;"></div><div class="block" id="3-11" style="width: 29px; height: 29px;"></div><div class="block" id="3-12" style="width: 29px; height: 29px;"></div><div class="block" id="3-13" style="width: 29px; height: 29px;"></div><div class="block" id="3-14" style="width: 29px; height: 29px;"></div><div class="block" id="3-15" style="width: 29px; height: 29px;"></div><div class="block" id="3-16" style="width: 29px; height: 29px;"></div><div class="block" id="3-17" style="width: 29px; height: 29px;"></div><div class="block" id="3-18" style="width: 29px; height: 29px;"></div><div class="block" id="3-19" style="width: 29px; height: 29px;"></div><div class="block" id="4-0" style="width: 29px; height: 29px;"></div><div class="block" id="4-1" style="width: 29px; height: 29px;"></div><div class="block" id="4-2" style="width: 29px; height: 29px;"></div><div class="block" id="4-3" style="width: 29px; height: 29px;"></div><div class="block" id="4-4" style="width: 29px; height: 29px;"></div><div class="block" id="4-5" style="width: 29px; height: 29px;"></div><div class="block" id="4-6" style="width: 29px; height: 29px;"></div><div class="block" id="4-7" style="width: 29px; height: 29px;"></div><div class="block food" id="4-8" style="width: 29px; height: 29px;"></div><div class="block" id="4-9" style="width: 29px; height: 29px;"></div><div class="block" id="4-10" style="width: 29px; height: 29px;"></div><div class="block" id="4-11" style="width: 29px; height: 29px;"></div><div class="block" id="4-12" style="width: 29px; height: 29px;"></div><div class="block" id="4-13" style="width: 29px; height: 29px;"></div><div class="block" id="4-14" style="width: 29px; height: 29px;"></div><div class="block" id="4-15" style="width: 29px; height: 29px;"></div><div class="block" id="4-16" style="width: 29px; height: 29px;"></div><div class="block" id="4-17" style="width: 29px; height: 29px;"></div><div class="block" id="4-18" style="width: 29px; height: 29px;"></div><div class="block" id="4-19" style="width: 29px; height: 29px;"></div><div class="block" id="5-0" style="width: 29px; height: 29px;"></div><div class="block" id="5-1" style="width: 29px; height: 29px;"></div><div class="block" id="5-2" style="width: 29px; height: 29px;"></div><div class="block" id="5-3" style="width: 29px; height: 29px;"></div><div class="block" id="5-4" style="width: 29px; height: 29px;"></div><div class="block" id="5-5" style="width: 29px; height: 29px;"></div><div class="block" id="5-6" style="width: 29px; height: 29px;"></div><div class="block" id="5-7" style="width: 29px; height: 29px;"></div><div class="block" id="5-8" style="width: 29px; height: 29px;"></div><div class="block" id="5-9" style="width: 29px; height: 29px;"></div><div class="block" id="5-10" style="width: 29px; height: 29px;"></div><div class="block" id="5-11" style="width: 29px; height: 29px;"></div><div class="block" id="5-12" style="width: 29px; height: 29px;"></div><div class="block" id="5-13" style="width: 29px; height: 29px;"></div><div class="block" id="5-14" style="width: 29px; height: 29px;"></div><div class="block" id="5-15" style="width: 29px; height: 29px;"></div><div class="block" id="5-16" style="width: 29px; height: 29px;"></div><div class="block" id="5-17" style="width: 29px; height: 29px;"></div><div class="block" id="5-18" style="width: 29px; height: 29px;"></div><div class="block" id="5-19" style="width: 29px; height: 29px;"></div><div class="block" id="6-0" style="width: 29px; height: 29px;"></div><div class="block" id="6-1" style="width: 29px; height: 29px;"></div><div class="block" id="6-2" style="width: 29px; height: 29px;"></div><div class="block" id="6-3" style="width: 29px; height: 29px;"></div><div class="block" id="6-4" style="width: 29px; height: 29px;"></div><div class="block" id="6-5" style="width: 29px; height: 29px;"></div><div class="block" id="6-6" style="width: 29px; height: 29px;"></div><div class="block" id="6-7" style="width: 29px; height: 29px;"></div><div class="block" id="6-8" style="width: 29px; height: 29px;"></div><div class="block" id="6-9" style="width: 29px; height: 29px;"></div><div class="block" id="6-10" style="width: 29px; height: 29px;"></div><div class="block" id="6-11" style="width: 29px; height: 29px;"></div><div class="block" id="6-12" style="width: 29px; height: 29px;"></div><div class="block" id="6-13" style="width: 29px; height: 29px;"></div><div class="block" id="6-14" style="width: 29px; height: 29px;"></div><div class="block" id="6-15" style="width: 29px; height: 29px;"></div><div class="block" id="6-16" style="width: 29px; height: 29px;"></div><div class="block" id="6-17" style="width: 29px; height: 29px;"></div><div class="block" id="6-18" style="width: 29px; height: 29px;"></div><div class="block" id="6-19" style="width: 29px; height: 29px;"></div><div class="block" id="7-0" style="width: 29px; height: 29px;"></div><div class="block" id="7-1" style="width: 29px; height: 29px;"></div><div class="block" id="7-2" style="width: 29px; height: 29px;"></div><div class="block" id="7-3" style="width: 29px; height: 29px;"></div><div class="block" id="7-4" style="width: 29px; height: 29px;"></div><div class="block" id="7-5" style="width: 29px; height: 29px;"></div><div class="block" id="7-6" style="width: 29px; height: 29px;"></div><div class="block" id="7-7" style="width: 29px; height: 29px;"></div><div class="block" id="7-8" style="width: 29px; height: 29px;"></div><div class="block" id="7-9" style="width: 29px; height: 29px;"></div><div class="block" id="7-10" style="width: 29px; height: 29px;"></div><div class="block" id="7-11" style="width: 29px; height: 29px;"></div><div class="block" id="7-12" style="width: 29px; height: 29px;"></div><div class="block" id="7-13" style="width: 29px; height: 29px;"></div><div class="block" id="7-14" style="width: 29px; height: 29px;"></div><div class="block" id="7-15" style="width: 29px; height: 29px;"></div><div class="block" id="7-16" style="width: 29px; height: 29px;"></div><div class="block" id="7-17" style="width: 29px; height: 29px;"></div><div class="block" id="7-18" style="width: 29px; height: 29px;"></div><div class="block" id="7-19" style="width: 29px; height: 29px;"></div><div class="block" id="8-0" style="width: 29px; height: 29px;"></div><div class="block" id="8-1" style="width: 29px; height: 29px;"></div><div class="block" id="8-2" style="width: 29px; height: 29px;"></div><div class="block" id="8-3" style="width: 29px; height: 29px;"></div><div class="block" id="8-4" style="width: 29px; height: 29px;"></div><div class="block" id="8-5" style="width: 29px; height: 29px;"></div><div class="block" id="8-6" style="width: 29px; height: 29px;"></div><div class="block" id="8-7" style="width: 29px; height: 29px;"></div><div class="block" id="8-8" style="width: 29px; height: 29px;"></div><div class="block" id="8-9" style="width: 29px; height: 29px;"></div><div class="block" id="8-10" style="width: 29px; height: 29px;"></div><div class="block" id="8-11" style="width: 29px; height: 29px;"></div><div class="block" id="8-12" style="width: 29px; height: 29px;"></div><div class="block" id="8-13" style="width: 29px; height: 29px;"></div><div class="block" id="8-14" style="width: 29px; height: 29px;"></div><div class="block" id="8-15" style="width: 29px; height: 29px;"></div><div class="block" id="8-16" style="width: 29px; height: 29px;"></div><div class="block" id="8-17" style="width: 29px; height: 29px;"></div><div class="block" id="8-18" style="width: 29px; height: 29px;"></div><div class="block" id="8-19" style="width: 29px; height: 29px;"></div><div class="block" id="9-0" style="width: 29px; height: 29px;"></div><div class="block" id="9-1" style="width: 29px; height: 29px;"></div><div class="block" id="9-2" style="width: 29px; height: 29px;"></div><div class="block" id="9-3" style="width: 29px; height: 29px;"></div><div class="block" id="9-4" style="width: 29px; height: 29px;"></div><div class="block" id="9-5" style="width: 29px; height: 29px;"></div><div class="block" id="9-6" style="width: 29px; height: 29px;"></div><div class="block" id="9-7" style="width: 29px; height: 29px;"></div><div class="block" id="9-8" style="width: 29px; height: 29px;"></div><div class="block" id="9-9" style="width: 29px; height: 29px;"></div><div class="block" id="9-10" style="width: 29px; height: 29px;"></div><div class="block" id="9-11" style="width: 29px; height: 29px;"></div><div class="block" id="9-12" style="width: 29px; height: 29px;"></div><div class="block" id="9-13" style="width: 29px; height: 29px;"></div><div class="block" id="9-14" style="width: 29px; height: 29px;"></div><div class="block" id="9-15" style="width: 29px; height: 29px;"></div><div class="block" id="9-16" style="width: 29px; height: 29px;"></div><div class="block" id="9-17" style="width: 29px; height: 29px;"></div><div class="block" id="9-18" style="width: 29px; height: 29px;"></div><div class="block" id="9-19" style="width: 29px; height: 29px;"></div><div class="block" id="10-0" style="width: 29px; height: 29px;"></div><div class="block" id="10-1" style="width: 29px; height: 29px;"></div><div class="block" id="10-2" style="width: 29px; height: 29px;"></div><div class="block" id="10-3" style="width: 29px; height: 29px;"></div><div class="block" id="10-4" style="width: 29px; height: 29px;"></div><div class="block" id="10-5" style="width: 29px; height: 29px;"></div><div class="block" id="10-6" style="width: 29px; height: 29px;"></div><div class="block" id="10-7" style="width: 29px; height: 29px;"></div><div class="block" id="10-8" style="width: 29px; height: 29px;"></div><div class="block" id="10-9" style="width: 29px; height: 29px;"></div><div class="block" id="10-10" style="width: 29px; height: 29px;"></div><div class="block" id="10-11" style="width: 29px; height: 29px;"></div><div class="block" id="10-12" style="width: 29px; height: 29px;"></div><div class="block" id="10-13" style="width: 29px; height: 29px;"></div><div class="block" id="10-14" style="width: 29px; height: 29px;"></div><div class="block" id="10-15" style="width: 29px; height: 29px;"></div><div class="block" id="10-16" style="width: 29px; height: 29px;"></div><div class="block" id="10-17" style="width: 29px; height: 29px;"></div><div class="block" id="10-18" style="width: 29px; height: 29px;"></div><div class="block" id="10-19" style="width: 29px; height: 29px;"></div><div class="block" id="11-0" style="width: 29px; height: 29px;"></div><div class="block" id="11-1" style="width: 29px; height: 29px;"></div><div class="block" id="11-2" style="width: 29px; height: 29px;"></div><div class="block" id="11-3" style="width: 29px; height: 29px;"></div><div class="block" id="11-4" style="width: 29px; height: 29px;"></div><div class="block" id="11-5" style="width: 29px; height: 29px;"></div><div class="block" id="11-6" style="width: 29px; height: 29px;"></div><div class="block" id="11-7" style="width: 29px; height: 29px;"></div><div class="block" id="11-8" style="width: 29px; height: 29px;"></div><div class="block" id="11-9" style="width: 29px; height: 29px;"></div><div class="block" id="11-10" style="width: 29px; height: 29px;"></div><div class="block" id="11-11" style="width: 29px; height: 29px;"></div><div class="block" id="11-12" style="width: 29px; height: 29px;"></div><div class="block" id="11-13" style="width: 29px; height: 29px;"></div><div class="block" id="11-14" style="width: 29px; height: 29px;"></div><div class="block" id="11-15" style="width: 29px; height: 29px;"></div><div class="block" id="11-16" style="width: 29px; height: 29px;"></div><div class="block" id="11-17" style="width: 29px; height: 29px;"></div><div class="block" id="11-18" style="width: 29px; height: 29px;"></div><div class="block" id="11-19" style="width: 29px; height: 29px;"></div><div class="block" id="12-0" style="width: 29px; height: 29px;"></div><div class="block" id="12-1" style="width: 29px; height: 29px;"></div><div class="block" id="12-2" style="width: 29px; height: 29px;"></div><div class="block" id="12-3" style="width: 29px; height: 29px;"></div><div class="block" id="12-4" style="width: 29px; height: 29px;"></div><div class="block" id="12-5" style="width: 29px; height: 29px;"></div><div class="block" id="12-6" style="width: 29px; height: 29px;"></div><div class="block" id="12-7" style="width: 29px; height: 29px;"></div><div class="block" id="12-8" style="width: 29px; height: 29px;"></div><div class="block" id="12-9" style="width: 29px; height: 29px;"></div><div class="block" id="12-10" style="width: 29px; height: 29px;"></div><div class="block" id="12-11" style="width: 29px; height: 29px;"></div><div class="block" id="12-12" style="width: 29px; height: 29px;"></div><div class="block" id="12-13" style="width: 29px; height: 29px;"></div><div class="block" id="12-14" style="width: 29px; height: 29px;"></div><div class="block" id="12-15" style="width: 29px; height: 29px;"></div><div class="block" id="12-16" style="width: 29px; height: 29px;"></div><div class="block" id="12-17" style="width: 29px; height: 29px;"></div><div class="block" id="12-18" style="width: 29px; height: 29px;"></div><div class="block" id="12-19" style="width: 29px; height: 29px;"></div><div class="block" id="13-0" style="width: 29px; height: 29px;"></div><div class="block" id="13-1" style="width: 29px; height: 29px;"></div><div class="block" id="13-2" style="width: 29px; height: 29px;"></div><div class="block" id="13-3" style="width: 29px; height: 29px;"></div><div class="block" id="13-4" style="width: 29px; height: 29px;"></div><div class="block" id="13-5" style="width: 29px; height: 29px;"></div><div class="block" id="13-6" style="width: 29px; height: 29px;"></div><div class="block" id="13-7" style="width: 29px; height: 29px;"></div><div class="block" id="13-8" style="width: 29px; height: 29px;"></div><div class="block" id="13-9" style="width: 29px; height: 29px;"></div><div class="block" id="13-10" style="width: 29px; height: 29px;"></div><div class="block" id="13-11" style="width: 29px; height: 29px;"></div><div class="block" id="13-12" style="width: 29px; height: 29px;"></div><div class="block" id="13-13" style="width: 29px; height: 29px;"></div><div class="block" id="13-14" style="width: 29px; height: 29px;"></div><div class="block" id="13-15" style="width: 29px; height: 29px;"></div><div class="block" id="13-16" style="width: 29px; height: 29px;"></div><div class="block" id="13-17" style="width: 29px; height: 29px;"></div><div class="block" id="13-18" style="width: 29px; height: 29px;"></div><div class="block" id="13-19" style="width: 29px; height: 29px;"></div><div class="block" id="14-0" style="width: 29px; height: 29px;"></div><div class="block" id="14-1" style="width: 29px; height: 29px;"></div><div class="block" id="14-2" style="width: 29px; height: 29px;"></div><div class="block" id="14-3" style="width: 29px; height: 29px;"></div><div class="block" id="14-4" style="width: 29px; height: 29px;"></div><div class="block" id="14-5" style="width: 29px; height: 29px;"></div><div class="block" id="14-6" style="width: 29px; height: 29px;"></div><div class="block" id="14-7" style="width: 29px; height: 29px;"></div><div class="block" id="14-8" style="width: 29px; height: 29px;"></div><div class="block" id="14-9" style="width: 29px; height: 29px;"></div><div class="block" id="14-10" style="width: 29px; height: 29px;"></div><div class="block" id="14-11" style="width: 29px; height: 29px;"></div><div class="block" id="14-12" style="width: 29px; height: 29px;"></div><div class="block" id="14-13" style="width: 29px; height: 29px;"></div><div class="block" id="14-14" style="width: 29px; height: 29px;"></div><div class="block" id="14-15" style="width: 29px; height: 29px;"></div><div class="block" id="14-16" style="width: 29px; height: 29px;"></div><div class="block" id="14-17" style="width: 29px; height: 29px;"></div><div class="block" id="14-18" style="width: 29px; height: 29px;"></div><div class="block" id="14-19" style="width: 29px; height: 29px;"></div><div class="block" id="15-0" style="width: 29px; height: 29px;"></div><div class="block" id="15-1" style="width: 29px; height: 29px;"></div><div class="block" id="15-2" style="width: 29px; height: 29px;"></div><div class="block" id="15-3" style="width: 29px; height: 29px;"></div><div class="block" id="15-4" style="width: 29px; height: 29px;"></div><div class="block" id="15-5" style="width: 29px; height: 29px;"></div><div class="block" id="15-6" style="width: 29px; height: 29px;"></div><div class="block" id="15-7" style="width: 29px; height: 29px;"></div><div class="block" id="15-8" style="width: 29px; height: 29px;"></div><div class="block" id="15-9" style="width: 29px; height: 29px;"></div><div class="block" id="15-10" style="width: 29px; height: 29px;"></div><div class="block" id="15-11" style="width: 29px; height: 29px;"></div><div class="block" id="15-12" style="width: 29px; height: 29px;"></div><div class="block" id="15-13" style="width: 29px; height: 29px;"></div><div class="block" id="15-14" style="width: 29px; height: 29px;"></div><div class="block" id="15-15" style="width: 29px; height: 29px;"></div><div class="block" id="15-16" style="width: 29px; height: 29px;"></div><div class="block" id="15-17" style="width: 29px; height: 29px;"></div><div class="block" id="15-18" style="width: 29px; height: 29px;"></div><div class="block" id="15-19" style="width: 29px; height: 29px;"></div><div class="block" id="16-0" style="width: 29px; height: 29px;"></div><div class="block" id="16-1" style="width: 29px; height: 29px;"></div><div class="block" id="16-2" style="width: 29px; height: 29px;"></div><div class="block" id="16-3" style="width: 29px; height: 29px;"></div><div class="block" id="16-4" style="width: 29px; height: 29px;"></div><div class="block" id="16-5" style="width: 29px; height: 29px;"></div><div class="block" id="16-6" style="width: 29px; height: 29px;"></div><div class="block" id="16-7" style="width: 29px; height: 29px;"></div><div class="block" id="16-8" style="width: 29px; height: 29px;"></div><div class="block" id="16-9" style="width: 29px; height: 29px;"></div><div class="block" id="16-10" style="width: 29px; height: 29px;"></div><div class="block" id="16-11" style="width: 29px; height: 29px;"></div><div class="block" id="16-12" style="width: 29px; height: 29px;"></div><div class="block" id="16-13" style="width: 29px; height: 29px;"></div><div class="block" id="16-14" style="width: 29px; height: 29px;"></div><div class="block" id="16-15" style="width: 29px; height: 29px;"></div><div class="block" id="16-16" style="width: 29px; height: 29px;"></div><div class="block" id="16-17" style="width: 29px; height: 29px;"></div><div class="block" id="16-18" style="width: 29px; height: 29px;"></div><div class="block" id="16-19" style="width: 29px; height: 29px;"></div><div class="block" id="17-0" style="width: 29px; height: 29px;"></div><div class="block" id="17-1" style="width: 29px; height: 29px;"></div><div class="block" id="17-2" style="width: 29px; height: 29px;"></div><div class="block" id="17-3" style="width: 29px; height: 29px;"></div><div class="block" id="17-4" style="width: 29px; height: 29px;"></div><div class="block" id="17-5" style="width: 29px; height: 29px;"></div><div class="block" id="17-6" style="width: 29px; height: 29px;"></div><div class="block" id="17-7" style="width: 29px; height: 29px;"></div><div class="block" id="17-8" style="width: 29px; height: 29px;"></div><div class="block" id="17-9" style="width: 29px; height: 29px;"></div><div class="block" id="17-10" style="width: 29px; height: 29px;"></div><div class="block" id="17-11" style="width: 29px; height: 29px;"></div><div class="block" id="17-12" style="width: 29px; height: 29px;"></div><div class="block" id="17-13" style="width: 29px; height: 29px;"></div><div class="block" id="17-14" style="width: 29px; height: 29px;"></div><div class="block" id="17-15" style="width: 29px; height: 29px;"></div><div class="block" id="17-16" style="width: 29px; height: 29px;"></div><div class="block" id="17-17" style="width: 29px; height: 29px;"></div><div class="block" id="17-18" style="width: 29px; height: 29px;"></div><div class="block" id="17-19" style="width: 29px; height: 29px;"></div><div class="block" id="18-0" style="width: 29px; height: 29px;"></div><div class="block" id="18-1" style="width: 29px; height: 29px;"></div><div class="block" id="18-2" style="width: 29px; height: 29px;"></div><div class="block" id="18-3" style="width: 29px; height: 29px;"></div><div class="block" id="18-4" style="width: 29px; height: 29px;"></div><div class="block" id="18-5" style="width: 29px; height: 29px;"></div><div class="block" id="18-6" style="width: 29px; height: 29px;"></div><div class="block" id="18-7" style="width: 29px; height: 29px;"></div><div class="block" id="18-8" style="width: 29px; height: 29px;"></div><div class="block" id="18-9" style="width: 29px; height: 29px;"></div><div class="block" id="18-10" style="width: 29px; height: 29px;"></div><div class="block" id="18-11" style="width: 29px; height: 29px;"></div><div class="block" id="18-12" style="width: 29px; height: 29px;"></div><div class="block" id="18-13" style="width: 29px; height: 29px;"></div><div class="block" id="18-14" style="width: 29px; height: 29px;"></div><div class="block" id="18-15" style="width: 29px; height: 29px;"></div><div class="block" id="18-16" style="width: 29px; height: 29px;"></div><div class="block" id="18-17" style="width: 29px; height: 29px;"></div><div class="block" id="18-18" style="width: 29px; height: 29px;"></div><div class="block" id="18-19" style="width: 29px; height: 29px;"></div><div class="block" id="19-0" style="width: 29px; height: 29px;"></div><div class="block" id="19-1" style="width: 29px; height: 29px;"></div><div class="block" id="19-2" style="width: 29px; height: 29px;"></div><div class="block" id="19-3" style="width: 29px; height: 29px;"></div><div class="block" id="19-4" style="width: 29px; height: 29px;"></div><div class="block" id="19-5" style="width: 29px; height: 29px;"></div><div class="block" id="19-6" style="width: 29px; height: 29px;"></div><div class="block" id="19-7" style="width: 29px; height: 29px;"></div><div class="block" id="19-8" style="width: 29px; height: 29px;"></div><div class="block" id="19-9" style="width: 29px; height: 29px;"></div><div class="block" id="19-10" style="width: 29px; height: 29px;"></div><div class="block" id="19-11" style="width: 29px; height: 29px;"></div><div class="block" id="19-12" style="width: 29px; height: 29px;"></div><div class="block" id="19-13" style="width: 29px; height: 29px;"></div><div class="block" id="19-14" style="width: 29px; height: 29px;"></div><div class="block" id="19-15" style="width: 29px; height: 29px;"></div><div class="block" id="19-16" style="width: 29px; height: 29px;"></div><div class="block" id="19-17" style="width: 29px; height: 29px;"></div><div class="block" id="19-18" style="width: 29px; height: 29px;"></div><div class="block" id="19-19" style="width: 29px; height: 29px;"></div></div>
+
+
+	<script src="jquery工程文件/jquery-1.12.0.js"></script>
+	<script>
+		$(function(){
+			var hang=20;
+			var snake = [{x:0,y:0},{x:0,y:1},{x:0,y:2}];  
+			var food = null;
+			var timeId=null;
+			var way = 39;
+
+//游戏开始之前
+
+			clearInterval(timeId)
+			$('.food').css('display','none')
+
+			$('.mu').find('.xian')
+			.animate({left:'+=965'},1000)
+			$('.mu').find('.xian2')
+			.animate({right:'+=740'},1000)
+
+			$('#explain')
+			.delay(1400)
+			.slideDown(500)
+			$('#gamename')
+			.animate({height:'toggle'},2500)
+
+			$('.gc').each(function(i,v){
+				$(v)
+				.delay(2000)
+				.fadeIn(500)
+				.fadeOut(700)
+				.fadeIn(500)
+			})
+
+			$('.gc').on('click',function(){
+				$('.mu').css('display','none');
+				$('.contain').css('display','block')
+			})
+
+
+//尺寸选择
+			$('ul li[data-row]').bind('click',function(){
+				hang = Number(($(this).attr('data-row')))       
+				renderSence();                                  
+				$('li.active').removeClass('active')           
+				$(this).addClass('active')
+			    $('.food').css('display','block')
+			})
+
+//开始停止按钮
+
+			$('ul li[data-r]').bind('click',function(){
+				var str = $(this).attr('data-r');             
+				if(str==='start'){
+					timeId=setInterval(move,200);
+					$('li.active').removeClass('active');
+			        $(this).addClass('active')
+				}else if(str==='pause'){
+					$('li.active').removeClass('active');
+                    $(this).addClass('active')
+					clearInterval(timeId)
+				}else if(str==='restart'){
+					clearInterval(timeId)                     
+					$('.snake').removeClass('snake');          
+					$('.food').removeClass('food');
+					$('li.active').removeClass('active');
+			        $(this).addClass('active')
+			        snake = [{x:0,y:0},{x:0,y:1},{x:0,y:2}];
+			        drawsnake();
+			        way=39;
+					food = putFood();                           
+					timeId=setInterval(move,200)
+				}
+
+			})
+
+//坐标函数
+			var xy2id = function(i,j){                            
+				return i+'-'+j
+			}  
+
+//渲染场景               
+			var renderSence = function(){
+				hang = hang ||20;
+				var 
+				i=0,
+				j=0,
+				sence = $('#sence').empty(),
+				wh=Math.floor(600/hang);                         
+				for(;i<hang;i++){
+					for(j=0;j<hang;j++){                          
+						$('<div>')              
+						.addClass('block')
+						.attr('id',xy2id(i,j))
+						.width(wh-1)
+						.height(wh-1)     
+						.appendTo(sence);
+					} 
+				}
+				sence.width(wh*hang).height(wh*hang);
+			}
+			renderSence()
+
+//输入尺寸的input
+
+			$('#rowSelect').bind('keydown',function(e){
+				if(e.keyCode===13){
+					hang = $(this).val();                  
+					if(isNaN(Number(hang))){               
+						alert('stay away from me')
+						return;
+					}else if(hang<5||hang>40){
+						alert('hey!Are you kidding me?');
+						return
+					}else{
+						$('li.active').removeClass('active');
+						renderSence();
+						$('li[data-row='+hang+']').addClass('active');
+					}
+					renderSence();
+					$(this).val('')
+				}
+			})
+
+
+//draw
+
+			//draw snake&food
+			var dict={'0-0':true,'0-1':true,'0-2':true};
+			var drawsnake = function(){
+				snake.forEach(function(v){                    
+					$('#'+xy2id(v.x,v.y)).addClass('snake')      
+				})
+			}
+			drawsnake();
+
+			var food = {}
+			var putFood = function(){
+				var _x=Math.floor(Math.random()*hang);  
+				var _y=Math.floor(Math.random()*hang);
+				$('#'+xy2id(_x,_y)).addClass('food')        
+				return {x:_x,y:_y}                       
+			} 
+			food = putFood(); 
+			
+
+//游戏进程
+
+			//move snake
+			var way = 39;                             
+			var move = function(){
+				var newhead;
+				var oldhead = snake[snake.length-1]
+				if(way===39){
+					newhead = {x:oldhead.x,y:oldhead.y+1}
+				}else if(way===37){
+					newhead = {x:oldhead.x,y:oldhead.y-1}
+				}else if(way===40){
+					newhead = {x:oldhead.x+1,y:oldhead.y}
+				}else if(way===38){
+					newhead = {x:oldhead.x-1,y:oldhead.y}
+				}
+
+				//hit self
+				if(dict[xy2id(newhead.x,newhead.y)]){
+					alert('sorry');
+					clearInterval(timeId);
+					return;
+				}
+				//hit wall
+				if(newhead.x < 0 || newhead.x > hang-1 || newhead.y < 0 || newhead.y > hang-1){
+					alert('sorry Game Over');
+					clearInterval(timeId);
+					return;
+				}
+				//eat food
+				if(newhead.x === food.x && newhead.y===food.y){
+					snake.push(newhead);  
+					dict[xy2id(newhead.x,newhead.y)]=true;     
+					$('#'+xy2id(newhead.x,newhead.y))        
+					.addClass('snake')
+					.removeClass('food');
+					food=putFood();                            
+				}else{
+					snake.push(newhead);   
+					dict[xy2id(newhead.x,newhead.y)]=true;                            
+					$('#'+xy2id(newhead.x,newhead.y)).addClass('snake')  
+					var tail = snake.shift();                       
+					$('#'+xy2id(tail.x,tail.y)).removeClass('snake');
+					delete dict[xy2id(tail.x,tail.y)]                 
+				}
+
+		    }
+
+			$(document).bind('keydown',function(e){
+				if(Math.abs(e.keyCode-way)===2){             
+					return;
+				}
+				if(e.keyCode < 37 || e.keyCode > 40){
+					return;
+				}
+				var dict = {37:'left',38:'up',39:'right',40:'down'}
+				way = e.keyCode;
+			})
+
+			// timeId = setInterval(move,200)
+			
+		})
+
+	</script>
+
+</body>
