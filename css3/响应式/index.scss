@@ -1,0 +1,214 @@
+%clear{
+	content: '';
+	clear: both;
+	display: block;
+}
+
+body{
+	padding: 0;
+	margin:0;
+}
+
+ul,li,p1,p2,p3,p4,p5,p6,p,pre{
+	padding: 0;
+	margin:0;
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+%hide{
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+$small:735px;
+$medium:1068px;
+.aside{
+	position: relative;
+	max-height: 200px;
+	margin: auto;
+	border-top:2px solid white;
+	&::after{
+		@extend %clear;
+	}
+	li{
+		float: left;
+		width: 25%;
+		
+		a{
+			display: block;
+			height: 200px;
+			background-position:center center;
+			background-repeat: no-repeat;
+			background-size:360px 200px;
+			span{
+			@extend %hide;
+			}
+		}
+		@media screen and(max-width: $medium){
+			width:50%;
+			 a{
+				background-size:640px 200px;
+			}
+			
+		}
+		@media screen and(max-width: $small){
+			width:100%;
+
+		 a {
+				background-size:735px 200px;
+			}
+			
+		}
+	}
+}
+
+
+$list:iphone_6s,promo_applepay_geo_alt,macbook,accessories;
+
+@for $i from 1 through 4{
+	.aside li:nth-child(#{$i}) a{
+		background: url('./image/'+nth($list,$i)+'_large.jpg');
+	}
+	@media screen and(max-width: $medium){
+		.aside li:nth-child(#{$i}) a{
+			background: url('./image/'+nth($list,$i)+'_medium.jpg');
+		}
+	}
+	@media screen and(max-width: $small){
+		.aside li:nth-child(#{$i}) a{
+			background: url('./image/'+nth($list,$i)+'_small.jpg');
+		}
+	}
+}
+
+.aside li a{
+	border-bottom: 2px solid white;
+	border-right: 2px solid white;
+}
+.aside li:nth-last-child(1) a{
+	border-right: none;
+}
+@media screen and(max-width: $medium){
+	.aside li:nth-child(2n+2) a{
+		border-right: none;
+	}
+	.aside li:nth-child(n+3) a{
+		border-bottom: none;
+	}
+}
+@media screen and(max-width: $small){
+	.aside li:nth-child(3) a{
+		border-bottom:2px solid white;
+	}
+	.aside li a{
+		border-right: none;
+	}
+}
+%column{
+	position: relative;
+}
+
+$num:12  !default;
+$rules:(
+large:1600px,
+medium:900px,
+small:800px,
+	);
+@each $rule in map_keys($rules){
+	@for $i from 1 through $num{
+		.#{$rule}-#{$i}{
+			@extend %column;
+		}
+	}
+}
+
+@each $rule in map_keys($rules){
+	@media screen and(max-width:map_get($rules,$rule)){
+		@for $i from 1 through $num{
+			.#{$rule}-#{$i}{
+				width: percentage($i/$num);
+			}
+		}
+	}
+}
+
+
+
+.pro{
+	min-height: 200px;
+	border: 1px solid black;
+	box-sizing:border-box;
+	li{
+		float: left;
+		height: 198px;
+		border: 1px solid red;
+		box-sizing:border-box;
+	}
+}
+
+.footer{
+	max-width:980px;
+	height: 252px;
+	margin: 0 auto;
+	.content{
+		float: left;
+		min-width: 20%;
+	} 
+	.a{
+		height: 180px;
+	}
+	.b{
+		height: 220px;
+		
+	}
+	.c{
+		height: 140px;
+		
+	}
+	.d{
+		height: 200px;
+		
+	}
+	.e{
+		height: 140px;
+		
+	}
+	@media (max-width: 800px){
+	.content{
+		width: 100%;
+		height: none;
+		overflow: hidden;
+		min-height: 2px;
+		max-height: 50px;
+		position: relative;
+		h3{
+			border-bottom: 1px solid black;
+		}
+		ul{
+			margin: 0;
+		    overflow: hidden;
+		    padding-bottom: 16px;
+		    position: absolute;
+		    top: 100%;
+		    left: 0;
+		    width: 100%;
+		    visibility: hidden;
+		    z-index: -1;
+		    -webkit-transform: translateY(-100px);
+		    transform: translateY(-100px);
+		    height: 0;
+		}
+	}
+}
+
+}
+
+
+

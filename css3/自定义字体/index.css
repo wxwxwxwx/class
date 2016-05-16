@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "bold";
+  src: url("./fonts/myriad-set-pro_semibold.woff") format("woff"), url("./fonts/myriad-set-pro_semibold.svg") format("svg"), url("./fonts/myriad-set-pro_semibold.eot") format("eot"), url("./fonts/myriad-set-pro_semibold.ttf") format("ttf"); }
+
+h1:nth-child(1) {
+  font-family: 'bold'; }

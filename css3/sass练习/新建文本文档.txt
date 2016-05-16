@@ -322,3 +322,308 @@ $theme:(
 
 */
 
+
+body{
+ 	margin:0;
+ 	padding: 0;
+}
+li,ul,p,pre,h1,h2,h3,h4,h5,h6{
+	margin:0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+li,ul{
+	list-style: none;
+}
+%clear{
+		clear:both;
+		content:'';
+		display: block;
+	}
+.aside{
+	border-top: 2px solid red;
+	min-height: 200px;
+	&::after{
+		content:'';
+		clear: both;
+		display: block;
+	}
+	li{
+		position: relative;
+		height: 200px;
+	    float: left;
+	    width: 25%;
+	    z-index: 9;
+	}
+	span{
+		width: 1px;
+		height: 1px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+	}
+}
+.aside{
+	li a{
+		background-size: 360px 200px;
+		height: 200px;
+		width: auto;
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    display: block;
+	    border-right: 2px solid white;
+	}
+
+	li:nth-child(1) a{
+		background-image:url(./image/iphone_6s_large.jpg);
+		
+	}
+	li:nth-child(2) a{
+		background-image:url(./image/promo_applepay_geo_alt_large.jpg);
+		
+	}
+	li:nth-child(3) a{
+		background-image:url(./image/macbook_large.jpg);
+		
+	}
+	li:nth-child(4) a{
+		background-image:url(./image/accessories_large.jpg);
+		border-right: none;
+	}
+}
+@media screen and(max-width: 1068px){
+	.aside li{
+		width: 50%;
+		a{
+		background-size: 640px 200px;
+		height: 200px;
+		width: auto;
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    display: block;
+	    border-right: 2px solid white;
+		}
+
+	}
+	.aside li:nth-child(1),.aside li:nth-child(2){
+		border-bottom: 2px solid white;
+	}
+	.aside li:nth-child(1) a{
+		background-image:url(./image/iphone_6s_medium.jpg);
+		
+	}
+	.aside li:nth-child(2) a{
+		background-image:url(./image/promo_applepay_geo_alt_medium.jpg);
+		border-right: none;
+		
+	}
+	.aside li:nth-child(3) a{
+		background-image:url(./image/macbook_medium.jpg);
+		
+	}
+	.aside li:nth-child(4) a{
+		background-image:url(./image/accessories_medium.jpg);
+		border-right: none;
+	}
+}
+
+@media screen and(max-width: 735px){
+	.aside li{
+		width: 100%;
+		a{
+		background-size: 736px 200px;
+		height: 200px;
+		width: auto;
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    display: block;
+	    border-right: none;
+		}
+
+	}
+	.aside li{
+		border-bottom: 2px solid white;
+	}
+	.aside li:nth-child(1) a{
+		background-image:url(./image/iphone_6s_small.jpg);
+		
+	}
+	.aside li:nth-child(2) a{
+		background-image:url(./image/promo_applepay_geo_alt_small.jpg);
+		
+	}
+	.aside li:nth-child(3) a{
+		background-image:url(./image/macbook_small.jpg);
+		
+	}
+	.aside li:nth-child(4) a{
+		background-image:url(./image/accessories_small.jpg);
+		border-bottom: none;
+	}
+
+
+
+}
+
+
+
+.pro{
+	
+	min-height: 200px;
+	border: 1px solid black;
+	box-sizing:border-box;
+	
+}
+.pro li{
+
+		border: 1px solid red;
+		box-sizing:border-box;
+		height: 198px;
+		float: left;
+	
+}
+
+.large-1{
+	width: 8.33%;
+}
+.large-2{
+	width: 16.666%;
+}
+.large-3{
+	width: 25%;
+}
+.large-4{
+	width: 33.333%;
+}
+.large-5{
+	width: 41.666%;
+}
+.large-6{
+	width: 50%;
+}
+.large-7{
+	width: 58.333%;
+}
+.large-8{
+	width: 66.6666%;
+}
+.large-9{
+	width: 75%;
+}
+.large-10{
+	width: 83.333%;
+}
+.large-11{
+	width: 91.666%;
+}
+.large-12{
+	width: 100%;
+}
+@media screen and (max-width: 1068px){
+.medium-1{
+	width: 8.33%;
+}
+.medium-2{
+	width: 16.666%;
+}
+.medium-3{
+	width: 25%;
+}
+.medium-4{
+	width: 33.333%;
+}
+.medium-5{
+	width: 41.666%;
+}
+.medium-6{
+	width: 50%;
+}
+.medium-7{
+	width: 58.333%;
+}
+.medium-8{
+	width: 66.6666%;
+}
+.medium-9{
+	width: 75%;
+}
+.medium-10{
+	width: 83.333%;
+}
+.medium-11{
+	width: 91.666%;
+}
+.medium-12{
+	width: 100%;
+}	
+}
+
+
+@media screen and (max-width: 735px){
+.small-1{
+	width: 8.33%;
+}
+.small-2{
+	width: 16.666%;
+}
+.small-3{
+	width: 25%;
+}
+.small-4{
+	width: 33.333%;
+}
+.small-5{
+	width: 41.666%;
+}
+.small-6{
+	width: 50%;
+}
+.small-7{
+	width: 58.333%;
+}
+.small-8{
+	width: 66.6666%;
+}
+.small-9{
+	width: 75%;
+}
+.small-10{
+	width: 83.333%;
+}
+.small-11{
+	width: 91.666%;
+}
+.small-12{
+	width: 100%;
+}	
+}
+
+
+
+/*@for $i from 1 through $num{
+	$off:percentage(1/12);
+	.large-#{$i}{
+		width: $off*$i;
+	}
+}
+	
+@media screen and(max-width: $medium){
+	@for $i from 1 through $num{
+	$off:percentage(1/12);	
+		.medium-#{$i}{
+			width: $off*$i;
+		}
+	}
+}
+
+@media screen and(max-width: $small){
+	@for $i from 1 through $num{
+	$off:percentage(1/12);	
+		.small-#{$i}{
+			width: $off*$i;
+		}
+	}
+}*/

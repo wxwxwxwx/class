@@ -153,7 +153,11 @@ audio {
 			background-position: -69px 0;
 		}
 		.opmusic-play{
-			background-position: -105px -42px;
+			background-position: -105px 0px;
+			width:42px;
+			height:42px;
+			margin-top: 0;
+
 		}
 		.opmusic-next{
 			background-position: -147px 0;
@@ -168,6 +172,38 @@ audio {
 		    float: left;
 		    margin-top: 10px;
 		    margin-left: 8px;
+		    .volume-icon{
+		    	vertical-align: -7px;
+			    display: inline-block;
+			    width: 24px;
+			    height: 24px;
+			    cursor: pointer;
+			    background: url(../image/player_bg.png) no-repeat -189px -3px;
+		    }
+		    .volume-regu{
+		    	font-size: 0;
+			    background: url(../image/player_bg.png) no-repeat -291px -11px;
+			    display: inline-block;
+			    width: 71px;
+			    height: 11px;
+			    position: relative;
+			    cursor: pointer;
+			    .volume-body{
+			    	font-size: 0;
+				    background: url(../image/player_bg.png) no-repeat -291px 0;
+				    display: inline-block;
+				    height: 11px;
+				    position: absolute;
+			    }
+			    .volume-round{
+			    	background: url(../image/player_bg.png) no-repeat -366px 0;
+				    font-size: 0;
+				    width: 6px;
+				    height: 11px;
+				    position: absolute;
+				    top: 0;
+			    }
+		    }
 		}
 	}
 	.op-select{
@@ -183,6 +219,28 @@ audio {
 	    border-radius: 3px;
 	    box-shadow: 3px 3px 6px RGBA(0,0,0,.42);
 	    z-index: 12;
+	    strong{
+	    background: url(../image/player_bg.png) no-repeat;
+	    display: block;
+	    width: 32px;
+	    height: 22px;
+	    cursor: pointer;
+	    span{
+	    	display: none;
+	    }
+	    }
+	    .play-order{
+	    	    background-position: -408px 0;
+	    }
+	    .play-rand{
+	    	background-position: -408px -44px;
+	    }
+	    .play-only{
+			background-position: -376px 0;
+	    }
+	    .play-list{
+			background-position: -408px -44px;
+	    }
 	}
 	.op-press{
 		font-size: 0;
@@ -191,11 +249,101 @@ audio {
 	    position: absolute;
 	    bottom: 0;
 	    left: 0;
+	    .player-1{
+	    	width: 100%;
+	    	background: #323232;
+	    	font-size: 0;
+	    	height: 4px;
+	    	position: absolute;
+	    	bottom: 0;
+	    	left: 0;
+	    	z-index: 1;
+	    	cursor: pointer;
+	    }
+	    .player-2{
+	    	background: #2c4838;
+	    	font-size: 0;
+	    	height: 4px;
+	    	position: absolute;
+	    	bottom: 0;
+	    	left: 0;
+	    	z-index: 2;
+	    	cursor: pointer;
+	    }
+	    .player-3{
+	    	position: absolute;
+	    	background: #0cc65b;
+	    	font-size: 0;
+	    	display: block;
+	    	height: 4px;
+	    	z-index: 3;
+	    	cursor: pointer;
+	    }
+	    .player-4{
+	    	display: block;
+	    	width: 7px;
+	    	height: 6px;
+	    	background: url(../image/progress_op.png) no-repeat;
+	    	position: absolute;
+	    	z-index: 3;
+	    	top: -1px;
+	    	cursor: pointer;
+	    	left: 0%;
+	    	
+
+	    }
+	   
 	}
 	.play-show{
 		width: 50px;
-	    height: 24px;
-	    position: absolute;
-	    z-index: 3
+		height: 24px;
+		position: absolute;
+	    z-index: 3;
+	    display: none;
+	    p{
+	    		height: 17px;
+	    		line-height: 17px;
+	    		color: #fff;
+	    		border: solid 1px #666;
+	    		background: #2f2f2f;
+	    		-webkit-text-size-adjust: none;
+	    		font-size: 10px;
+	    		text-align: center;
+	    		font-family: Arial,Helvetica;
+	    	}
+	    	.icon-arrow-footer{
+	    		display: block;
+	    		width: 13px;
+	    		height: 7px;
+	    		position: relative;
+	    		top: -1px;
+	    		overflow: hidden;
+	    		left: 17px;
+	    		.footer-boder{
+	    			width: 0;
+	    			height: 0;
+	    			overflow: hidden;
+	    			font-size: 0;
+	    			display: inline-block;
+	    			border-width: 7px;
+	    			border-color: #666 transparent transparent transparent;
+	    			border-style: solid dashed dashed dashed;
+	    			position: absolute;
+	    			top: -1px;
+	    		}
+	    		.footer-arrow{
+	    			width: 0;
+	    			height: 0;
+	    			overflow: hidden;
+	    			font-size: 0;
+	    			display: inline-block;
+	    			border-width: 5px;
+	    			border-color: #2f2f2f transparent transparent transparent;
+	    			border-style: solid dashed dashed dashed;
+	    			position: absolute;
+	    			top: -1px;
+	    			left: 2px;
+	    		}
+	    	}
 	}
 }

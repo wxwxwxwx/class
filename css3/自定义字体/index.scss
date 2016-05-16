@@ -1,0 +1,15 @@
+@mixin font-all($username,$servename){
+	$font-path:'./fonts/';
+	@font-face{
+		font-family: $username;
+		src:url($font-path + $servename+'.woff') format('woff'),
+		    url($font-path + $servename+'.svg') format('svg'),
+		    url($font-path + $servename+'.eot') format('eot'),
+			url($font-path + $servename+'.ttf') format('ttf');
+	}
+}
+
+@include font-all('bold','myriad-set-pro_semibold')
+h1:nth-child(1){
+	font-family: 'bold';
+}
